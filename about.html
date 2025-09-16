@@ -7,7 +7,6 @@
     <meta name="description" content="サロン未来は、美しさと個性をデザインするモダンヘアサロンです。最新の技術と上質なサービスで、お客様一人ひとりの理想のスタイルを実現します。">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <!-- <style> タグの内容は css/style.css へ移動しました -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -28,9 +27,9 @@
                 <ul>
                     <li><a href="index.html">ホーム</a></li>
                     <li><a href="about.html" class="active">サロンについて</a></li>
-                    <li><a href="services.html">サービス</a></li>
-                    <li><a href="works.html">施工事例</a></li>
-                    <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                    <li><a href="services.html">メニュー・料金</a></li>
+                    <li><a href="works.html">スタイルギャラリー</a></li>
+                    <li><a href="company.html">アクセス・予約</a></li>
                 </ul>
             </nav>
             <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
@@ -44,152 +43,165 @@
     <main>
         <section class="page-title-bar">
             <div class="container">
-                <h1>私たちについて</h1>
-                <p>家族の未来を見据えた、心地よい住まいづくり</p>
+                <h1>サロンについて</h1>
+                <p>あなたらしい美しさを引き出す、モダンなヘアサロン</p>
             </div>
         </section>
 
         <section id="philosophy" class="content-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll fade-in">企業理念</h2>
+                <h2 class="section-title animate-on-scroll fade-in">サロンの想い</h2>
                 <div class="animate-on-scroll fade-in-up">
-                    <img src="images_about/Image_kazokunoegao.jpg" alt="家族の笑顔と持続可能な住まいづくり" style="width:100%; margin-bottom: 20px;">
-                    <h3 class="vision-statement">「家族の笑顔をデザインする」</h3>
-                    <p>私たちは、お客様一人ひとりのライフスタイルや価値観を尊重した住まいづくりを追求します。単なる建物ではなく、家族の物語が紡がれる舞台として、末永く愛される住まいをご提供します。</p>
-                    <p>未来住建では、技術の研鑽はもちろんのこと、お客様との真摯な対話を何よりも大切にしています。ご要望をただ叶えるだけでなく、その先にある暮らしの豊かさまでを考え、提案いたします。</p>
-                    <p>また、次世代に美しい地球を残すという責任を果たすため、環境に配慮した素材選びや省エネルギー設計、再生可能エネルギーの活用など、持続可能な住まいづくりに積極的に取り組んでいます。</p>
+                    <img src="images_about/Image_kazokunoegao.jpg" alt="サロン未来の美しい空間" style="width:100%; margin-bottom: 20px;">
+                    <h3 class="vision-statement">「美しさと個性をデザインする」</h3>
+                    <p>サロン未来では、お一人お一人の個性やライフスタイルを大切にし、その方だけの特別な美しさを引き出すヘアスタイルをご提案しています。単なるカットやカラーではなく、お客様の人生に寄り添うパートナーとして、未来のあなたをさらに輝かせるお手伝いをしたいと考えています。</p>
+                    <p>サロン未来では、最新の技術とトレンドを常に取り入れながら、お客様との心と心のコミュニケーションを何よりも大切にしています。ただリクエストにお応えするだけではなく、その先にある新しいあなたをイメージし、最適なプランをご提案いたします。</p>
+                    <p>また、サロン未来は地球環境への配慮も大切にしています。オーガニック製品の使用、水や電力の節約、リサイクル材料の活用など、持続可能なサロン運営を心がけています。</p>
                 </div>
             </div>
         </section>
 
         <section id="history" class="content-section bg-light">
             <div class="container">
-                <h2 class="section-title animate-on-scroll fade-in">歩みと実績</h2>
+                <h2 class="section-title animate-on-scroll fade-in">サロンの歩み</h2>
                 <div class="timeline animate-on-scroll fade-in-up">
-                    <div class="timeline-item">
-                        <div class="timeline-year">2010年</div>
-                        <div class="timeline-content">
-                            <h4>未来住建設立</h4>
-                            <p>地域に根ざした工務店として、創業</p> <!-- 所在地情報は会社概要で統一 -->
-                        </div>
-                    </div>
-                    <div class="timeline-item">
-                        <div class="timeline-year">2015年</div>
-                        <div class="timeline-content">
-                            <h4>自然素材住宅の取り組み開始</h4>
-                            <p>地元の木材を活用した健康住宅の提供を強化</p>
-                        </div>
-                    </div>
                     <div class="timeline-item">
                         <div class="timeline-year">2018年</div>
                         <div class="timeline-content">
-                            <h4>ゼロエネルギー住宅の提供開始</h4>
-                            <p>環境性能と快適性を両立した住まいづくり</p>
+                            <h4>サロン未来オープン</h4>
+                            <p>地域に愛されるモダンヘアサロンとして開業</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020年</div>
+                        <div class="timeline-content">
+                            <h4>オーガニックメニュー導入</h4>
+                            <p>髪と地球に優しいオーガニック製品を全面導入</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">2022年</div>
                         <div class="timeline-content">
-                            <h4>施工実績100棟達成</h4>
-                            <p>多くのお客様に支えられ、大きな節目を迎える</p>
+                            <h4>プレミアムスパメニュー開始</h4>
+                            <p>リラクゼーション効果の高いヘッドスパコースを新設</p>
                         </div>
                     </div>
                     <div class="timeline-item">
                         <div class="timeline-year">2024年</div>
                         <div class="timeline-content">
-                            <h4>リノベーション事業部設立</h4>
-                            <p>既存住宅の価値を高める新たなサービスの展開</p>
+                            <h4>デジタル技術の活用</h4>
+                            <p>最新のカラーシミュレーションシステムを導入</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="message" class="content-section">
+        <section id="process" class="content-section">
             <div class="container">
-                <h2 class="section-title animate-on-scroll fade-in">代表挨拶</h2>
-                <div class="profile-flex">
-                    <div class="profile-image animate-on-scroll fade-in-left">
-                        <img src="images_about/Image_daihyou.jpg" alt="代表 未来 太郎">
+                <h2 class="section-title animate-on-scroll fade-in">施術の流れ</h2>
+                <div class="process-grid animate-on-scroll fade-in-up">
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <h4>1. カウンセリング</h4>
+                        <p>お客様のライフスタイル、髪質、ご希望を詳しくお聞きし、最適なスタイルをご提案します。</p>
                     </div>
-                    <div class="profile-text animate-on-scroll fade-in-right">
-                        <h4>代表取締役 未来 太郎</h4>
-                        <p>この度は、未来住建のウェブサイトをご覧いただき、誠にありがとうございます。私たちは、創業以来、「お客様と共に創る」という姿勢を大切に、地域社会に貢献できる工務店を目指してまいりました。</p>
-                        <p>家は、家族が時を重ね、思い出を育む大切な場所です。だからこそ、私たちは一棟一棟に心を込めて、品質、デザイン、そして何よりもお客様の満足度を追求し続けています。</p>
-                        <p>未来住建では、お引き渡し後も長くお付き合いさせていただくことを大切にしています。住まいのメンテナンスはもちろん、お客様のライフステージの変化に応じたサポートを提供し、末永く安心して暮らしていただける関係づくりを目指しています。</p>
-                        <p>これからも、お客様の「理想の暮らし」を実現するパートナーとして、誠心誠意努めてまいります。どうぞ未来住建にご期待ください。</p>
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h4>2. 髪質診断</h4>
+                        <p>専門的な髪質診断により、お客様の髪の状態を正確に把握し、最適な施術方法を決定します。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h4>3. スタイル提案</h4>
+                        <p>カウンセリングと診断結果をもとに、お客様にぴったりのヘアスタイルをご提案いたします。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-cut"></i>
+                        </div>
+                        <h4>4. 施術</h4>
+                        <p>経験豊富なスタイリストが、丁寧かつ確実な技術でお客様の理想のスタイルを実現します。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-sparkles"></i>
+                        </div>
+                        <h4>5. 仕上げ</h4>
+                        <p>スタイリングとケアで美しい仕上がりを完成させ、ホームケアのアドバイスもいたします。</p>
+                    </div>
+                    <div class="process-item">
+                        <div class="process-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h4>6. アフターケア</h4>
+                        <p>施術後のメンテナンス方法やスタイリングのコツをお教えし、美しさを長く保てるようサポートします。</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="strengths" class="content-section bg-light">
+        <section id="team" class="content-section bg-light">
             <div class="container">
-                <h2 class="section-title animate-on-scroll fade-in">未来住建の強み</h2>
-                <div class="strengths-grid">
-                    <div class="strength-item animate-on-scroll fade-in-up">
-                        <i class="fa-solid fa-lightbulb fa-3x"></i> <!-- 提案力アイコン -->
-                        <h4>提案力</h4>
-                        <p>お客様の潜在的なニーズまで汲み取り、最適なプランをご提案します。暮らしやすさと美しさを両立させる工夫を大切にしています。</p>
+                <h2 class="section-title animate-on-scroll fade-in">スタイリスト紹介</h2>
+                <div class="team-grid animate-on-scroll fade-in-up">
+                    <div class="team-member">
+                        <img src="images_about/Image_daihyou.jpg" alt="代表スタイリスト 田中美穂">
+                        <h4>田中 美穂</h4>
+                        <p class="team-role">代表スタイリスト / サロンオーナー</p>
+                        <p>15年の経験を持つベテランスタイリスト。お客様一人ひとりの魅力を最大限に引き出すスタイル提案を得意としています。</p>
+                        <div class="team-specialties">
+                            <span>カット</span>
+                            <span>カラー</span>
+                            <span>パーマ</span>
+                        </div>
                     </div>
-                    <div class="strength-item animate-on-scroll fade-in-up delay-1">
-                        <i class="fa-solid fa-wrench fa-3x"></i> <!-- 技術力アイコン -->
-                        <h4>技術力</h4>
-                        <p>経験豊富な職人が、細部までこだわり抜いた高品質な施工を実現します。最新の工法と伝統技術を融合した家づくりを行っています。</p>
+                    <div class="team-member">
+                        <img src="images_about/Image_sekkeishi.jpg" alt="シニアスタイリスト 佐藤雅人">
+                        <h4>佐藤 雅人</h4>
+                        <p class="team-role">シニアスタイリスト</p>
+                        <p>トレンドを取り入れたモダンなスタイルから、クラシックなデザインまで幅広く対応。メンズカットも得意分野です。</p>
+                        <div class="team-specialties">
+                            <span>メンズカット</span>
+                            <span>トレンドスタイル</span>
+                            <span>ヘッドスパ</span>
+                        </div>
                     </div>
-                    <div class="strength-item animate-on-scroll fade-in-up delay-2">
-                        <i class="fa-solid fa-location-dot fa-3x"></i> <!-- 地域密着アイコン -->
-                        <h4>地域密着</h4>
-                        <p>地域の気候風土を熟知し、地元の素材を活かした住まいづくりをサポートします。地域の特性を活かした住まいは、快適さと耐久性を両立します。</p>
+                    <div class="team-member">
+                        <img src="images_about/image_coordinate.jpg" alt="スタイリスト 山田愛">
+                        <h4>山田 愛</h4>
+                        <p class="team-role">スタイリスト</p>
+                        <p>ナチュラルで上品なスタイルを得意とし、特にボブスタイルとカラーリングに定評があります。丁寧なカウンセリングが人気です。</p>
+                        <div class="team-specialties">
+                            <span>ボブスタイル</span>
+                            <span>ナチュラルカラー</span>
+                            <span>トリートメント</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="team" class="content-section">
-            <div class="container">
-                <h2 class="section-title animate-on-scroll fade-in">私たちのチーム</h2>
-                <p class="section-description animate-on-scroll fade-in">未来住建は、設計から施工、アフターサポートまで、お客様の住まいづくりをトータルにサポートする専門家集団です。</p>
-                <div class="team-grid">
-                    <div class="team-member animate-on-scroll fade-in-up">
-                        <img src="images_about/Image_sekkeishi.jpg" alt="設計士">
-                        <h4>設計チーム</h4>
-                        <p>経験豊富な一級建築士を中心に、お客様の理想を形にする設計チーム。機能性とデザイン性を兼ね備えた住まいを提案します。</p>
-                    </div>
-                    <div class="team-member animate-on-scroll fade-in-up delay-1">
-                        <img src="images_about/image_fx (5).jpg" alt="職人">
-                        <h4>施工チーム</h4>
-                        <p>確かな技術と経験を持つ職人たちが、丁寧な施工で品質の高い住まいを実現します。伝統工法と新技術の融合に取り組んでいます。</p>
-                    </div>
-                    <div class="team-member animate-on-scroll fade-in-up delay-2">
-                        <img src="images_about/image_coordinate.jpg" alt="コーディネーター">
-                        <h4>コーディネートチーム</h4>
-                        <p>お客様と各専門家をつなぐコーディネーターが、スムーズな家づくりをサポート。安心して家づくりを進められる体制を整えています。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="commitment" class="content-section bg-light">
+        <section id="commitment" class="content-section">
             <div class="container">
                 <h2 class="section-title animate-on-scroll fade-in">私たちのこだわり</h2>
-                <div class="commitment-flex">
-                    <div class="commitment-image animate-on-scroll fade-in-left">
-                        <img src="images_about/Image_kodawarinoie.jpg" alt="こだわりの家づくり">
+                <div class="commitment-grid animate-on-scroll fade-in-up">
+                    <div class="commitment-item">
+                        <img src="images_about/Image_kodawarinoie.jpg" alt="高品質な製品へのこだわり">
+                        <h4>厳選された製品</h4>
+                        <p>髪に優しく、仕上がりが美しいプロフェッショナル専用の製品のみを使用。オーガニック製品も豊富に取り揃えています。</p>
                     </div>
-                    <div class="commitment-text animate-on-scroll fade-in-right">
-                        <h4>自然素材へのこだわり</h4>
-                        <p>地元産の木材を中心に、自然素材を積極的に採用。調湿効果や心地よい手触りなど、自然素材ならではの魅力を活かした住まいづくりを行っています。</p>
-                        
-                        <h4>省エネ・高断熱へのこだわり</h4>
-                        <p>厳しい気候に対応する高断熱・高気密設計を標準採用。冬暖かく夏涼しい住まいは、省エネにもつながり、快適な暮らしと環境への配慮を両立します。</p>
-                        
-                        <h4>デザインへのこだわり</h4>
-                        <p>機能性だけでなく、美しさや心地よさを大切にしたデザイン。お客様のライフスタイルに合わせた、唯一無二の住まいを提案します。</p>
+                    <div class="commitment-item">
+                        <img src="images_about/image_fx (5).jpg" alt="快適な空間づくり">
+                        <h4>快適な空間</h4>
+                        <p>お客様にリラックスしていただけるよう、清潔で落ち着いた空間づくりにこだわっています。プライベート感を大切にした個室も完備。</p>
                     </div>
-                </div>
-                <div class="cta-button-container animate-on-scroll fade-in-up">
-                    <a href="works.html" class="cta-button">施工事例を見る</a>
                 </div>
             </div>
         </section>
@@ -197,26 +209,25 @@
 
     <footer id="footer">
         <div class="container">
-            <div class="footer-content"> <!-- クラス名を footer-flex から footer-content に変更 -->
+            <div class="footer-content">
                 <div class="footer-info">
-                    <h4>株式会社 未来住建</h4> <!-- h3からh4に合わせる（任意） -->
-                    <p>〒123-4567 東京都未来区住建町1-2-3</p> <!-- 修正 -->
-                    <p>TEL: 03-1234-5678</p> <!-- 修正 -->
-                    <p>受付時間: 9:00〜18:00（水曜定休）</p>
+                    <h4>サロン未来</h4>
+                    <p>〒123-4567 東京都未来区美容町1-2-3</p>
+                    <p>TEL: 03-5678-9012</p>
+                    <p>営業時間: 10:00〜20:00（月曜定休）</p>
                 </div>
                 <div class="footer-nav">
                     <ul>
                         <li><a href="index.html">ホーム</a></li>
-                        <li><a href="about.html">私たちについて</a></li>
-                        <li><a href="services.html">サービス</a></li>
-                        <li><a href="works.html">施工事例</a></li>
-                        <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                        <li><a href="about.html">サロンについて</a></li>
+                        <li><a href="services.html">メニュー・料金</a></li>
+                        <li><a href="works.html">スタイルギャラリー</a></li>
+                        <li><a href="company.html">アクセス・予約</a></li>
                     </ul>
                 </div>
             </div>
-            <!-- footer-bottom を style.css の .copyright との兼ね合いで調整 -->
-            <p class="copyright">© 2024 未来住建. All Rights Reserved.</p>
-            <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p> <!-- 修正 -->
+            <p class="copyright">© 2024 サロン未来. All Rights Reserved.</p>
+            <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p>
         </div>
     </footer>
 
