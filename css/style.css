@@ -1,0 +1,1448 @@
+/* 基本リセットと共通スタイル */
+:root {
+    --primary-color: #B8860B; /* ゴールデンロッド、ラグジュアリー感 */
+    --secondary-color: #F7F4F0; /* アイボリー系、上品な清潔感 */
+    --accent-color: #E8B4B8; /* ローズゴールド、モダンエレガンス */
+    --neutral-color: #6B5B73; /* モーブ系、深みと安らぎ */
+    --text-color: #333333;
+    --text-light-color: #ffffff;
+    --text-muted: #666666;
+    --border-color: #E5DDD5;
+    --font-family: 'Noto Sans JP', 'Playfair Display', serif;
+    --container-width: 1140px;
+    --header-height: 80px;
+    --section-padding: 80px;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+}
+
+body {
+    font-family: var(--font-family);
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden; /* 横スクロールバー対策 */
+}
+
+body.loading { /* ローディング中 */
+    overflow: hidden;
+}
+/* ハンバーガーメニューオープン時のスクロール禁止 */
+body.menu-open {
+    overflow: hidden;
+}
+
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+a:hover {
+    color: var(--accent-color);
+}
+
+ul { list-style: none; }
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.75em;
+    font-weight: 700;
+    line-height: 1.3;
+}
+h1 { font-size: clamp(2rem, 5vw, 2.8rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+h3 { font-size: clamp(1.5rem, 3.5vw, 2rem); }
+h4 { font-size: clamp(1.1rem, 3vw, 1.25rem); }
+
+.container {
+    width: 100%;
+    max-width: var(--container-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.text-center { text-align: center; }
+
+.btn {
+    display: inline-block;
+    padding: 0.8em 2em;
+    background-color: var(--primary-color);
+    color: var(--text-light-color) !important; /* aタグの色上書き */
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    font-weight: 700;
+    text-align: center;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+}
+.btn:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+.btn-primary { /* 強調ボタン */
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+}
+.btn-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+.btn-outline {
+    background-color: transparent;
+    color: var(--primary-color) !important;
+    border-color: var(--primary-color);
+}
+.btn-outline:hover {
+    background-color: var(--primary-color);
+    color: var(--text-light-color) !important;
+}
+
+
+/* ローディングアニメーション */
+#loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease 0.5s, visibility 0.8s ease 0.5s; /* 遅延をつけてからフェードアウト */
+}
+#loader.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.loader-logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    animation: fadeInLogo 1s ease-out forwards;
+}
+@keyframes fadeInLogo {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.loader-dots { display: flex; }
+.loader-dot {
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: loaderBounce 1.4s infinite ease-in-out both;
+}
+.loader-dot:nth-child(1) { animation-delay: -0.32s; }
+.loader-dot:nth-child(2) { animation-delay: -0.16s; }
+@keyframes loaderBounce {
+    0%, 80%, 100% { transform: scale(0); }
+    40% { transform: scale(1.0); }
+}
+
+/* ヘッダー */
+#header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    z-index: 1000;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, height 0.3s ease;
+}
+#header.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    height: calc(var(--header-height) - 10px);
+}
+#header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+#header .logo a {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    transition: font-size 0.3s ease;
+}
+#header.scrolled .logo a {
+    font-size: 1.6rem;
+}
+
+.global-nav ul { display: flex; }
+.global-nav ul li { margin-left: 30px; }
+.global-nav ul li a {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    padding: 10px 0;
+    position: relative;
+    letter-spacing: 0.05em;
+}
+.global-nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+.global-nav ul li a:hover::after,
+.global-nav ul li a.active::after { width: 100%; }
+.global-nav ul li a.active { color: var(--accent-color); }
+
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1001; /* ナビより手前 */
+}
+.hamburger-menu span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 6px 0;
+    transition: all 0.3s ease-in-out;
+    border-radius: 3px;
+}
+.hamburger-menu.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+.hamburger-menu.active span:nth-child(2) { opacity: 0; }
+.hamburger-menu.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+/* メインコンテンツのパディング */
+main { padding-top: var(--header-height); }
+
+/* ページタイトルバー (about.html, company.html, services.html, works.html で使用) */
+.page-title-bar {
+    background-color: var(--primary-color);
+    color: var(--text-light-color);
+    padding: 40px 0;
+    text-align: center;
+}
+.page-title-bar h1 {
+    color: var(--text-light-color);
+    margin-bottom: 0.25em;
+}
+.page-title-bar p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+}
+
+
+/* ヒーローセクション */
+#hero {
+    height: calc(100vh - var(--header-height));
+    min-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+.hero-background-layers {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* z-index: 1; /* コンテンツ(.hero-content)より後ろ、オーバーレイより後ろ */
+}
+
+.hero-bg-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* 各レイヤーがヒーローセクション全体をカバー */
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* background-size: cover; /* coverだと一部見えない可能性も。デザインに応じて contain や auto 100% なども検討 */
+    /* JSで動かすため、少し大きめに表示してはみ出させることもあります */
+    /* 例: width: 110%; height: 110%; top: -5%; left: -5%; */
+    will-change: transform;
+}
+
+.hero-bg-layer.layer-deep {
+    background-size: cover; /* 一番奥は全体をカバー */
+    z-index: 1;
+}
+
+.hero-bg-layer.layer-middle {
+    /* 透過PNGを想定。中央配置で、スクロール時に少し動くイメージ */
+    /* background-size: contain; や具体的なpx指定も可 */
+    background-size: auto 80%; /* 例: 高さを80%に */
+    z-index: 2;
+    /* JavaScriptで動かす際に、初期位置を少しずらしても良い */
+    /* top: 10%; など */
+}
+
+.hero-bg-layer.layer-near {
+    /* 透過PNGを想定。さらに手前にあり、より大きく動くイメージ */
+    /* background-size: contain; や具体的なpx指定も可 */
+    background-size: auto 60%; /* 例: 高さを60%に */
+    z-index: 4;
+    /* JavaScriptで動かす際に、初期位置を少しずらしても良い */
+    /* top: 20%; など */
+}
+
+.hero-overlay { /* 元の #hero::before の役割をこちらに */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%); /* グラデーション調整 */
+    z-index: 3; /* 背景レイヤーとコンテンツの間 */
+}
+.hero-background-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+}
+.hero-slide {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+#hero::before { /* オーバーレイ */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 100%);
+    z-index: -1;
+}
+.hero-content {
+    position: relative;
+    z-index: 5;
+    color: var(--text-light-color);
+    padding: 20px;
+}
+.hero-content h2 {
+    margin-bottom: 0.5em;
+    font-weight: 700;
+    line-height: 1.2;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+.hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    margin-bottom: 1.5em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+}
+.hero-content .btn {
+    font-size: clamp(1rem, 2.5vw, 1.1rem);
+    padding: 0.9em 2.5em;
+}
+
+/* コンテンツセクション共通 */
+.content-section { padding: var(--section-padding) 0; }
+.content-section.bg-light { background-color: var(--secondary-color); }
+.section-title {
+    text-align: center;
+    margin-bottom: 60px; /* about.html, services.htmlでは50pxだったので統一 */
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+    color: var(--primary-color);
+}
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+.section-description { /* services.html で使用 */
+    text-align: center;
+    margin: 0 auto 40px;
+    max-width: 800px;
+}
+
+/* トップページ: 私たちについて */
+.home-about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.home-about-text { flex: 1; }
+.home-about-text h4 { color: var(--primary-color); margin-bottom: 1em; }
+.home-about-text p { margin-bottom: 1.5em; }
+.home-about-image { flex: 1; }
+.home-about-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* トップページ: サービス */
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.service-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.service-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+.service-item h4 { color: var(--primary-color); margin-bottom: 0.5em; }
+
+/* トップページ & 施工事例ページ: 施工事例 */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+.works-grid.large-grid .work-item img { /* works.html用 */
+    height: 300px; /* 少し大きく */
+}
+.work-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease;
+}
+.work-item:hover { transform: scale(1.03); }
+.work-item img {
+    display: block;
+    width: 100%;
+    height: 250px; /* トップページ用 */
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+.work-item:hover img { transform: scale(1.1); }
+.work-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+    color: var(--text-light-color);
+    padding: 20px;
+    text-align: left;
+}
+.work-caption h4 { margin-bottom: 0; font-size: 1.1rem; }
+.work-caption p { font-size: 0.9rem; margin-bottom: 0.3em; opacity: 0.9; color: #f0f0f0; }
+.work-caption .work-tag {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--text-light-color);
+    font-size: 0.75rem;
+    padding: 3px 8px;
+    border-radius: 3px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+
+/* CTAセクション */
+.cta-section {
+    background-color: var(--primary-color);
+    color: var(--text-light-color);
+    padding: var(--section-padding) 0;
+}
+.section-title-cta { /* CTA用のタイトルスタイル */
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 20px;
+    color: var(--text-light-color);
+}
+.section-title-cta::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent-color);
+    border-radius: 2px;
+}
+.cta-section p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+/* フッター */
+#footer {
+    background-color: var(--text-color);
+    color: #e0e0e0;
+    padding: 50px 0 30px;
+    font-size: 0.9rem;
+}
+.footer-content { /* about.html, services.html の .footer-flex に相当 */
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #555; /* ToDo: var(--border-color) の暗い版を作るか検討 */
+}
+.footer-info { flex: 1.5; min-width: 250px; }
+.footer-info h4 { color: #fff; margin-bottom: 15px; font-size: 1.2rem;}
+.footer-info p { margin-bottom: 8px; line-height: 1.6; }
+.footer-nav { flex: 1; min-width: 200px; }
+.footer-nav ul li { margin-bottom: 10px; }
+.footer-nav ul li a { color: #e0e0e0; font-weight: 500; }
+.footer-nav ul li a:hover { color: var(--accent-color); }
+.copyright { text-align: center; margin-bottom: 0; }
+/* #footer .text-center a はデフォルトのaタグスタイルが適用される */
+
+
+/* アニメーション */
+.animate-on-load, .animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in { /* opacityは共通で設定 */ }
+.fade-in-up { transform: translateY(50px); }
+.fade-in-left { transform: translateX(-50px); }
+.fade-in-right { transform: translateX(50px); }
+
+.animate-on-load.is-visible,
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.delay-1 { transition-delay: 0.2s !important; }
+.delay-2 { transition-delay: 0.4s !important; }
+.delay-3 { transition-delay: 0.6s !important; }
+.delay-4 { transition-delay: 0.8s !important; } /* services.html で使用 */
+.delay-5 { transition-delay: 1.0s !important; } /* services.html で使用 */
+
+
+/* ----------------------------------------------------------------
+   ここから下は about.html と services.html から移動したスタイル
+------------------------------------------------------------------- */
+
+/* === From about.html === */
+.vision-statement {
+    text-align: center;
+    font-size: clamp(1.3rem, 4vw, 1.6rem); /* レスポンシブ調整 */
+    margin: 30px 0;
+    color: var(--primary-color); /* primary-color を使用 */
+    font-weight: bold;
+}
+
+/* タイムライン (about.html) */
+.timeline {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+}
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 120px; /* default */
+    width: 2px;
+    background-color: var(--border-color); /* 変数使用 */
+}
+.timeline-item {
+    position: relative;
+    padding-left: 160px; /* default */
+    margin-bottom: 40px;
+}
+.timeline-year {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100px;
+    font-weight: bold;
+    font-size: 1.1rem; /* 少し調整 */
+    color: var(--primary-color); /* 変数使用 */
+}
+.timeline-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.timeline-content h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem; /* 少し調整 */
+}
+
+/* プロフィール (about.html) */
+.profile-flex {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+}
+.profile-image { flex: 1; }
+.profile-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.profile-text { flex: 2; }
+.profile-text h4 {
+    font-size: clamp(1.3rem, 3.5vw, 1.5rem); /* レスポンシブ調整 */
+    margin-bottom: 25px;
+}
+
+/* 強み (about.html) */
+.strengths-grid {
+    display: flex; /* services.html の feature-grid と似ている */
+    gap: 30px;
+}
+.strength-item {
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.strength-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.strength-item img { /* アイコン画像 */
+    width: 60px; /* 少し小さく */
+    height: auto;
+    margin-bottom: 20px;
+}
+.strength-item h4 { font-size: 1.2rem; } /* service-item h4 と合わせる */
+
+/* チーム (about.html) */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+.team-member {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.team-member img {
+    width: 100%;
+    height: auto; /* アスペクト比維持 */
+    max-height: 250px; /* 高すぎないように */
+    object-fit: cover;
+}
+.team-member h4 {
+    padding: 20px 20px 10px;
+    margin: 0;
+    font-size: 1.2rem;
+}
+.team-member p {
+    padding: 0 20px 20px;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* こだわり (about.html) */
+.commitment-flex {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.commitment-image { flex: 1; }
+.commitment-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.commitment-text { flex: 1.5; }
+.commitment-text h4 { /* サブタイトル的な使い方 */
+    font-size: 1.25rem; /* 少し調整 */
+    margin: 30px 0 15px;
+    color: var(--primary-color); /* 変数使用 */
+}
+.commitment-text h4:first-child {
+    margin-top: 0;
+}
+
+/* CTAボタン (about.html) */
+.cta-button-container { /* services.html の .cta-container とは別 */
+    text-align: center;
+    margin-top: 40px;
+}
+.cta-button { /* .btn とは別に定義されていたもの */
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--primary-color); /* .btn と合わせる */
+    color: white !important;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.cta-button:hover {
+    background-color: var(--accent-color); /* .btn と合わせる */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(74, 122, 255, 0.2); /* 少し調整 */
+}
+
+/* 会社概要 (company.html) */
+.company-info-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 40px;
+    align-items: flex-start;
+}
+.company-table dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px 10px;
+}
+.company-table dt {
+    font-weight: bold;
+    padding-right: 10px;
+    color: var(--primary-color);
+}
+.company-table dd {
+    margin-left: 0; /* dlのデフォルトマージンリセット */
+}
+.company-table dd ul {
+    list-style: disc;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+.company-map h4 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+.company-map iframe {
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* お問い合わせフォーム (company.html) */
+.contact-form {
+    max-width: 700px;
+    margin: 40px auto 0;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+.form-group {
+    margin-bottom: 25px;
+}
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    font-family: var(--font-family);
+    transition: border-color 0.3s ease;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(0, 80, 140, 0.2);
+}
+.form-group .required {
+    color: var(--accent-color);
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.form-group .privacy-link { /* company.html で使用 */
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: inline-block;
+}
+.form-group .privacy-link:hover {
+    text-decoration: underline;
+}
+
+/* プライバシーポリシー (company.html) */
+.privacy-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.privacy-content h4 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+.privacy-content h4:first-of-type { margin-top: 0; }
+.privacy-content ol {
+    padding-left: 25px;
+    margin-bottom: 15px;
+}
+.privacy-content ol li {
+    margin-bottom: 8px;
+}
+
+
+/* === From services.html === */
+.bg-light { /* 再定義されていたので、既存のものにマージ */
+    background-color: var(--secondary-color); /* :root の secondary-color を使用 */
+}
+
+/* サービスナビ (services.html) */
+.service-nav { padding-bottom: 0 !important; } /* 上下の padding を調整 */
+.service-nav-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 0 0 30px; /* style.cssのulリセットと合わせる */
+    padding: 0;
+    list-style: none;
+}
+.service-nav-list a {
+    display: block;
+    padding: 15px 25px;
+    background-color: #f2f5f9; /* var(--secondary-color) より少し濃い */
+    border-radius: 4px;
+    text-decoration: none;
+    color: var(--text-color); /* 変数使用 */
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.service-nav-list a:hover {
+    background-color: #e6ecf5;
+    transform: translateY(-3px);
+    color: var(--primary-color); /* ホバー時の色を明確に */
+}
+
+/* サービス詳細 (services.html) */
+.service-detail-flex {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 60px;
+    align-items: center;
+}
+.service-detail-flex.reverse {
+    flex-direction: row-reverse;
+}
+.service-detail-image { flex: 1; }
+.service-detail-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.service-detail-text { flex: 1.5; }
+.service-detail-text h4 { /* H4は共通スタイルがあるので、必要ならクラスで特化 */
+    font-size: clamp(1.3rem, 3.5vw, 1.5rem);
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+.service-detail-text ul {
+    margin-bottom: 30px;
+    padding-left: 20px;
+    list-style: disc; /* 箇条書きマーカー表示 */
+}
+.service-detail-text ul li {
+    margin-bottom: 12px;
+}
+
+/* 費用目安 (services.html) */
+.service-fee {
+    background-color: #f5f8ff; /* var(--secondary-color)より青みがかっている */
+    border-radius: 8px;
+    padding: 25px;
+    margin: 30px 0;
+    border-left: 4px solid var(--primary-color); /* primary-colorに変更 */
+}
+.service-fee h5 { margin-top:0; margin-bottom: 10px; font-size: 1.1rem; color: var(--primary-color); }
+
+/* ボタン (services.htmlで独自定義されていたもの) */
+/* .btn, .btn-secondary -> style.css の .btn, .btn-outline で代替可能か検討 */
+/* services.htmlの.btnは .btn-primary、.btn-secondary は .btn-outline に近い */
+.service-buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* ボタンが多い場合折り返す */
+}
+/* .btn, .btn-secondary は style.css にあるので、ここで再定義は不要。
+   もし、services.html 専用のボタンスタイルが必要な場合は、
+   .service-buttons .btn のようにセレクタを特化させる */
+
+
+/* 特徴グリッド (services.html - 新築住宅) */
+.house-features {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color); /* 変数使用 */
+}
+.house-features h4 { /* セクション内小見出し */
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.4rem; /* 少し調整 */
+    color: var(--primary-color);
+}
+.feature-grid { /* about.html の .strengths-grid と同じ構造 */
+    display: flex;
+    gap: 30px;
+}
+.feature-item { /* about.html の .strength-item と同じ構造・スタイル */
+    flex: 1;
+    background-color: white;
+    border-radius: 8px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.feature-item .feature-icon { /* アイコンコンテナ */
+    margin-bottom: 5px; /* 下のテキストとの間隔を調整 */
+}
+.feature-item .feature-icon img {
+    width: 50px; /* アイコンサイズ調整 */
+    height: auto;
+}
+.feature-item h5 { font-size: 1.2rem; color: var(--primary-color); margin-bottom: 10px; }
+
+/* リノベーションタイプ (services.html) */
+.reno-types {
+    margin-top: 60px;
+}
+.reno-types h4 { /* セクション内小見出し - house-features h4 と同じ */
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+.reno-type-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+.reno-type-item { /* about.html の .team-member と似ている */
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    text-align: center; /* 画像下テキストを中央揃え */
+}
+.reno-type-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+.reno-type-item img {
+    width: 100%;
+    height: 200px; /* 高さを指定 */
+    object-fit: cover;
+}
+.reno-type-item h5 {
+    padding: 20px 20px 10px;
+    margin: 0;
+    font-size: 1.1rem; /* 少し調整 */
+    color: var(--primary-color);
+}
+.reno-type-item p {
+    padding: 0 20px 20px;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* 店舗種類リスト (services.html) */
+.store-types { margin-top: 40px; }
+.store-types h4 { /* セクション内小見出し - house-features h4 と同じ */
+    text-align: center;
+    margin-bottom: 30px; /* 少し調整 */
+    font-size: 1.4rem;
+    color: var(--primary-color);
+}
+.store-type-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.store-type-list li {
+    background-color: white;
+    padding: 20px 15px; /* padding調整 */
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+.store-type-list li:hover {
+    background-color: var(--secondary-color); /* 変数使用 */
+    transform: translateY(-3px);
+    color: var(--primary-color);
+}
+
+
+/* フロー (services.html) */
+.flow-list {
+    list-style: none;
+    padding: 0;
+    margin: 50px auto; /* 上下マージン、左右auto */
+    position: relative;
+    max-width: 900px;
+}
+.flow-list::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 35px;
+    width: 2px;
+    background-color: var(--border-color); /* 変数使用 */
+}
+.flow-list li {
+    position: relative;
+    padding-left: 90px;
+    margin-bottom: 50px;
+}
+.flow-list li:last-child { margin-bottom: 0; }
+.flow-number {
+    position: absolute;
+    left: 0;
+    top: 0; /* アイテム上端に合わせる */
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color); /* 変数使用 */
+    color: white;
+    border-radius: 50%;
+    font-size: 1.5rem; /* 少し調整 */
+    font-weight: bold;
+    z-index: 1;
+    box-shadow: 0 0 0 5px white; /* 背景色で縁取りのように見せる */
+}
+.flow-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.flow-content h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+}
+
+/* CTAコンテナ (services.html - フロー下) */
+.cta-container { /* about.html の .cta-button-container とは別 */
+    text-align: center;
+    margin-top: 60px;
+    padding: 40px;
+    background-color: var(--secondary-color); /* 変数使用 */
+    border-radius: 8px;
+}
+.cta-container p { margin-bottom: 20px; font-size: 1.1rem; }
+/* .cta-container .cta-button は about.html の .cta-button と同じスタイルを使用 */
+
+/* FAQ (services.html) */
+.faq-list {
+    max-width: 900px;
+    margin: 50px auto 0;
+}
+.faq-item {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+.faq-question {
+    background-color: var(--secondary-color); /* 変数使用 */
+    padding: 20px 25px;
+    margin: 0;
+    font-size: 1.1rem; /* 少し調整 */
+    position: relative;
+    cursor: pointer; /* 開閉可能を示唆 */
+    color: var(--primary-color);
+    font-weight: bold;
+}
+.faq-question::after { /* 開閉アイコン（例：プラスマイナス） */
+    content: '+';
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+.faq-item.active .faq-question::after {
+    content: '-';
+}
+.faq-answer {
+    background-color: white;
+    padding: 25px;
+    display: none; /* JSで制御 */
+}
+.faq-item.active .faq-answer {
+    display: block;
+}
+
+
+/* レスポンシブ対応 */
+@media (max-width: 992px) {
+    .home-about-content { flex-direction: column; }
+    .home-about-text { text-align: center; }
+    .home-about-image { margin-top: 30px; max-width: 500px; }
+
+    .company-info-grid { grid-template-columns: 1fr; }
+    .company-map { margin-top: 40px; }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-height: 70px;
+        --section-padding: 60px;
+    }
+    h1 { font-size: clamp(1.8rem, 6vw, 2.2rem); } /* clampの下限を少し調整 */
+    h2 { font-size: clamp(1.6rem, 5vw, 2rem); }
+    h3 { font-size: clamp(1.3rem, 4vw, 1.6rem); }
+
+    .global-nav {
+        position: fixed;
+        top: 0;
+        left: -100%; /* 初期状態は画面外 */
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        background-color: #fff;
+        box-shadow: 5px 0 15px rgba(0,0,0,0.1);
+        padding-top: var(--header-height);
+        transition: left 0.4s ease-in-out;
+        z-index: 999; /* ヘッダーより手前、ハンバーガーより奥 */
+        overflow-y: auto; /* メニュー項目が多い場合スクロール */
+    }
+    .global-nav.active { left: 0; }
+    .global-nav ul {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .global-nav ul li {
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+    .global-nav ul li a {
+        display: block;
+        padding: 10px;
+        font-size: 1.1rem;
+    }
+    .global-nav ul li a::after { display: none; } /* スマホでは下線なし */
+
+    .hamburger-menu { display: block; }
+
+    #hero { min-height: 500px; }
+    .hero-content h2 { font-size: clamp(1.8rem, 6vw, 2.2rem); }
+    .hero-content p { font-size: 1rem; }
+
+    .service-grid, .works-grid, .team-grid { grid-template-columns: 1fr; } /* 1列表示 */
+    
+    .footer-content { flex-direction: column; text-align: center; }
+    .footer-info, .footer-nav { min-width: 100%; }
+    .footer-nav ul { padding-left: 0; }
+
+    /* from about.html responsive */
+    .timeline::before { left: 30px; } /* 調整 */
+    .timeline-item { padding-left: 70px; } /* 調整 */
+    .timeline-year { width: auto; position: static; margin-bottom: 10px; font-size: 1rem; }
+
+    .profile-flex,
+    .commitment-flex { flex-direction: column; }
+    .profile-image,
+    .commitment-image { margin-bottom: 30px; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .profile-text { text-align: center; }
+
+    .strengths-grid { flex-direction: column; }
+    
+    /* from services.html responsive */
+    .service-detail-flex,
+    .service-detail-flex.reverse {
+        flex-direction: column;
+        gap: 30px; /* ギャップ調整 */
+    }
+    .service-detail-image { margin-bottom: 30px; max-width: 450px; margin-left: auto; margin-right:auto; }
+    .service-detail-text { text-align: center; }
+    .service-detail-text ul { text-align: left; display: inline-block; } /* 中央揃えの中の左寄せ */
+    .service-buttons { justify-content: center; }
+
+    .feature-grid { flex-direction: column; }
+    .reno-type-grid { grid-template-columns: 1fr; } /* 1列 */
+    .store-type-list { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));} /* スマホでは少し小さく */
+    
+    .flow-list::before { left: 35px; } /* 変更なしでも可 */
+    .flow-list li { padding-left: 90px; } /* 変更なしでも可 */
+    .flow-number { width: 60px; height: 60px; font-size: 1.3rem; }
+}
+/* body.home の時だけ適用される初期非表示スタイル */
+.home .initially-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out; /* 表示時のトランジション */
+}
+.home .initially-hidden.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ▼▼▼ 超リッチ オープニングアニメーションのスタイル ▼▼▼ */
+#super-rich-opening {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000000; /* 初期は漆黒 */
+    z-index: 300000; /* 最前面 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    overflow: hidden;
+    /* 終了時のトランジションはJSでクラスを付与して制御 */
+    transition: opacity 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.5s,
+                visibility 1.2s cubic-bezier(0.77, 0, 0.175, 1) 0.5s;
+}
+
+#super-rich-opening.ending { /* JSで付与してフェードアウト開始 */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.strength-item i {
+    color: var(--primary-color); /* アイコンの色 */
+    margin-bottom: 20px; /* 下のテキストとの間隔 */
+    /* fa-3x でサイズは指定済み */
+}
+
+.sro-background-shifter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(135deg, #000000 0%, #0a0f1a 100%); /* 初期:黒から濃紺へ */
+    animation: sroBgShift 6s 1s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+}
+
+@keyframes sroBgShift {
+    0% { background: linear-gradient(135deg, #000000 0%, #0a0f1a 100%); }
+    30% { background: linear-gradient(135deg, var(--primary-color) 0%, #003057 100%); } /* プライマリカラーへ */
+    70% { background: linear-gradient(135deg, var(--secondary-color) 0%, #ffffff 100%); } /* セカンダリカラーから白へ */
+    100% { background: #ffffff; } /* 最終的に白 */
+}
+
+.sro-particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+/* パーティクルはCSSで多数の要素を配置するか、JSでCanvasに描画するのが一般的 */
+/* CSSでの簡易的な例 (多数の小さな要素をランダムに配置しアニメーション) */
+.sro-particles-container .sro-particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    opacity: 0;
+    animation: sroParticleFlow 10s linear infinite, sroParticleFade 10s ease-in-out infinite;
+}
+/* この .sro-particle はJSで動的に生成・配置することを推奨 */
+@keyframes sroParticleFlow {
+    0% { transform: translateY(100vh) translateX(var(--x-start)) scale(var(--scale)); opacity: 0; }
+    10% { opacity: var(--opacity-max, 0.7); }
+    90% { opacity: var(--opacity-max, 0.7); }
+    100% { transform: translateY(-100px) translateX(var(--x-end)) scale(var(--scale)); opacity: 0; }
+}
+@keyframes sroParticleFade { /* 途中で明滅するような効果 */
+    0%, 100% { opacity: 0; }
+    10%, 90% { opacity: var(--opacity-max, 0.7); }
+    50% { opacity: calc(var(--opacity-max, 0.7) * 0.3); }
+}
+
+
+.sro-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.sro-logo-wrapper {
+    display: flex; /* 文字を横並び */
+    justify-content: center;
+    align-items: center;
+    /* perspective: 800px; /* 3D的な動きを加える場合 */
+}
+
+.sro-logo-char {
+    font-family: var(--font-family);
+    font-size: clamp(3rem, 12vw, 6rem);
+    font-weight: 700;
+    color: #ffffff; /* 初期は白 */
+    display: inline-block;
+    opacity: 0;
+    transform-style: preserve-3d;
+    /* アニメーション定義 */
+    animation-name: sroLogoCharAppear, sroLogoColorShift;
+    animation-duration: 1.2s, 5s; /* 各アニメーションの時間 */
+    animation-fill-mode: forwards, forwards;
+    animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1), ease-in-out; /* 個別のイージング */
+    animation-delay: var(--char-delay), 2s; /* 個別の遅延、色変更は全体で2s後から */
+    margin: 0 -0.05em; /* 文字間を少し詰める */
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(var(--accent-rgb, 255, 107, 107), 0.2);
+}
+/* CSS変数でaccent-colorのRGB値を設定しておく */
+:root {
+    --accent-rgb: 255, 107, 107; /* --accent-color: #FF6B6B; に対応 */
+}
+
+
+/* 各文字の出現アニメーションと遅延 */
+.sro-logo-char.char-mi { --char-delay: 1.5s; }
+.sro-logo-char.char-rai { --char-delay: 1.7s; }
+.sro-logo-char.char-ju { --char-delay: 1.9s; }
+.sro-logo-char.char-ken { --char-delay: 2.1s; }
+
+@keyframes sroLogoCharAppear {
+    0% { opacity: 0; transform: translateY(50px) rotateX(-90deg) scale(0.8); }
+    /* 50% { transform: translateY(0) rotateX(20deg) scale(1.1); } */
+    100% { opacity: 1; transform: translateY(0) rotateX(0deg) scale(1); }
+}
+
+@keyframes sroLogoColorShift { /* 背景色変化に合わせてロゴの色も変化 */
+    0% { color: #ffffff; text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(var(--accent-rgb), 0.2); }
+    40% { color: #ffffff; text-shadow: 0 0 15px rgba(255, 255, 255, 0.3), 0 0 30px rgba(var(--accent-rgb), 0.2); } /* 背景が青の時も白 */
+    70% { color: var(--primary-color); text-shadow: 0 0 10px rgba(0, 80, 140, 0.3); } /* 背景が明るくなったらプライマリカラー */
+    100% { color: var(--primary-color); text-shadow: none; }
+}
+
+.sro-catchphrase {
+    font-family: var(--font-family);
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: #dddddd; /* 初期は少し暗めの白 */
+    opacity: 0;
+    margin-top: 30px;
+    transform: translateY(20px);
+    animation: sroCatchphraseAppear 1.5s 3.8s cubic-bezier(0.23, 1, 0.32, 1) forwards,
+               sroCatchphraseColorShift 3s 3.8s ease-in-out forwards;
+    letter-spacing: 0.05em;
+}
+
+@keyframes sroCatchphraseAppear {
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes sroCatchphraseColorShift {
+    0% { color: #dddddd; }
+    50% { color: #dddddd; }
+    100% { color: var(--text-color); } /* 通常のテキストカラーへ */
+}
+
+/* ▲▲▲ 超リッチ オープニングアニメーションのスタイル ▲▲▲ */

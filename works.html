@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>施工事例 - 未来住建</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-logo">未来住建</div>
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">未来住建</a></h1>
+            <nav class="global-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="about.html">私たちについて</a></li>
+                    <li><a href="services.html">サービス</a></li>
+                    <li><a href="works.html" class="active">施工事例</a></li>
+                    <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-bar">
+            <div class="container">
+                <h1>施工事例</h1>
+                <p>未来住建が手がけたこだわりの住まいをご覧ください</p>
+            </div>
+        </section>
+
+        <section id="works-list" class="content-section">
+            <div class="container">
+                <!-- フィルター機能は今回は省略（必要なら後で追加） -->
+                <!-- <div class="works-filter">
+                    <button class="active">すべて</button>
+                    <button>新築</button>
+                    <button>リフォーム</button>
+                </div> -->
+
+                <div class="works-grid large-grid">
+                    <article id="work1" class="work-item animate-on-scroll fade-in">
+                        <a href="#">
+                            <img src="images_sekouzirei/Image_kazokunoegao.jpg" alt="施工事例1">
+                            <div class="work-caption">
+                                <h4>光と風が通る、開放的なLDKのある家</h4>
+                                <p>カテゴリ: 新築注文住宅</p>
+                                <span class="work-tag">モダン</span> <span class="work-tag">自然光</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article id="work2" class="work-item animate-on-scroll fade-in delay-1">
+                        <a href="#">
+                            <img src="images_sekouzirei/image_kononukumori.jpg" alt="施工事例2">
+                            <div class="work-caption">
+                                <h4>木の温もりと家族の笑顔が集う家</h4>
+                                <p>カテゴリ: 新築注文住宅</p>
+                                <span class="work-tag">ナチュラル</span> <span class="work-tag">無垢材</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article id="work3" class="work-item animate-on-scroll fade-in">
+                        <a href="#">
+                            <img src="images_sekouzirei/image_tiku50nen.png" alt="施工事例3">
+                            <div class="work-caption">
+                                <h4>築50年の古民家を現代の暮らしへ再生</h4>
+                                <p>カテゴリ: リノベーション</p>
+                                <span class="work-tag">古民家再生</span> <span class="work-tag">和モダン</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="work-item animate-on-scroll fade-in delay-1"> <!-- id が必要な場合は work4 など付与 -->
+                        <a href="#">
+                            <img src="images_sekouzirei/image_garezi.png" alt="施工事例4">
+                            <div class="work-caption">
+                                <h4>趣味を楽しむガレージハウス</h4>
+                                <p>カテゴリ: 新築注文住宅</p>
+                                <span class="work-tag">ガレージ</span> <span class="work-tag">インダストリアル</span>
+                            </div>
+                        </a>
+                    </article>
+                    <article class="work-item animate-on-scroll fade-in">
+                        <a href="#">
+                            <img src="images_sekouzirei/Image_shintiku.jpg" alt="施工事例5">
+                            <div class="work-caption">
+                                <h4>都会的なデザインのコンパクト住宅</h4>
+                                <p>カテゴリ: 新築注文住宅</p>
+                                <span class="work-tag">都市型</span> <span class="work-tag">ミニマル</span>
+                            </div>
+                        </a>
+                    </article>
+                     <article class="work-item animate-on-scroll fade-in delay-1">
+                        <a href="#">
+                            <img src="images_sekouzirei/share_kicdhin.png" alt="施工事例6">
+                            <div class="work-caption">
+                                <h4>カフェ風キッチンのある家</h4>
+                                <p>カテゴリ: リフォーム</p>
+                                <span class="work-tag">キッチン</span> <span class="work-tag">デザインリフォーム</span>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+                <!-- ページネーションは今回は省略（必要なら後で追加） -->
+                <!-- <div class="pagination">
+                    <span>1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">次へ »</a>
+                </div> -->
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>株式会社 未来住建</h4>
+                    <p>〒123-4567 東京都未来区住建町1-2-3</p>
+                    <p>TEL: 03-1234-5678</p>
+                    <p>受付時間: 9:00〜18:00（水曜定休）</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="about.html">私たちについて</a></li>
+                        <li><a href="services.html">サービス</a></li>
+                        <li><a href="works.html">施工事例</a></li>
+                        <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2024 未来住建. All Rights Reserved.</p>
+            <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
+<!-- Vercel deploy test on main branch - Attempt X -->

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会社概要・お問い合わせ - 未来住建</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-logo">未来住建</div>
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">未来住建</a></h1>
+            <nav class="global-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="about.html">私たちについて</a></li>
+                    <li><a href="services.html">サービス</a></li>
+                    <li><a href="works.html">施工事例</a></li>
+                    <li><a href="company.html" class="active">会社概要・お問い合わせ</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-bar">
+            <div class="container">
+                <h1>会社概要・お問い合わせ</h1>
+                <p>未来住建の会社情報と、お問い合わせはこちらから</p>
+            </div>
+        </section>
+
+        <section id="company-info" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">会社概要</h2>
+                <div class="company-info-grid">
+                    <div class="company-table animate-on-scroll fade-in-left">
+                        <dl>
+                            <dt>会社名</dt><dd>株式会社 未来住建 (Mirai Juken Co., Ltd.)</dd>
+                            <dt>代表者</dt><dd>代表取締役 未来 太郎</dd>
+                            <dt>所在地</dt><dd>〒123-4567 東京都未来区住建町1-2-3 未来ビル5F</dd>
+                            <dt>電話番号</dt><dd>03-1234-5678 (代表)</dd>
+                            <dt>FAX番号</dt><dd>03-1234-5679</dd>
+                            <dt>メール</dt><dd>info@mirai-juken.example.com</dd>
+                            <dt>設立</dt><dd>2005年4月1日</dd>
+                            <dt>資本金</dt><dd>1,000万円</dd>
+                            <dt>事業内容</dt><dd>
+                                <ul>
+                                    <li>建築工事の設計、施工及び監理</li>
+                                    <li>注文住宅の企画、設計、施工</li>
+                                    <li>リフォーム・リノベーション工事</li>
+                                    <li>店舗・商業施設のデザイン及び施工</li>
+                                    <li>不動産の売買、賃貸、仲介及び管理</li>
+                                </ul>
+                            </dd>
+                            <dt>建設業許可</dt><dd>東京都知事許可 (般-XX) 第XXXXX号</dd>
+                            <dt>営業時間</dt><dd>9:00～18:00 (定休日：水曜日、祝日)</dd>
+                        </dl>
+                    </div>
+                    <div class="company-map animate-on-scroll fade-in-right">
+                        <h4>アクセスマップ</h4>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3240.828038067084!2d139.7645493152584!3d35.68123618019428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188bfbd89f700b%3A0x277c49ba34ed38!2z5p2x5Lqs6aeF!5e0!3m2!1sja!2sjp!4v1678886400000!5m2!1sja!2sjp" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="未来住建アクセスマップ"></iframe>
+                        <p>JR「未来駅」東口より徒歩5分</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-form" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">お問い合わせフォーム</h2>
+                <p class="text-center animate-on-scroll fade-in-up">家づくりに関するご相談、お見積もり依頼など、お気軽にお問い合わせください。<br>担当者より折り返しご連絡させていただきます。</p>
+                <form action="#" method="POST" class="contact-form animate-on-scroll fade-in-up delay-1">
+                    <div class="form-group">
+                        <label for="name">お名前 <span class="required">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">メールアドレス <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">お問い合わせ種別 <span class="required">*</span></label>
+                        <select id="subject" name="subject" required>
+                            <option value="">選択してください</option>
+                            <option value="新築について">新築について</option>
+                            <option value="リフォームについて">リフォームについて</option>
+                            <option value="店舗デザインについて">店舗デザインについて</option>
+                            <option value="資料請求">資料請求</option>
+                            <option value="その他">その他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">お問い合わせ内容 <span class="required">*</span></label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    <div class="form-group text-center">
+                         <p><a href="#privacy" class="privacy-link">プライバシーポリシー</a>に同意の上、送信してください。</p>
+                        <button type="submit" class="btn btn-primary">送信する</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="privacy" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">プライバシーポリシー</h2>
+                <div class="privacy-content animate-on-scroll fade-in-up">
+                    <p>株式会社未来住建（以下、「当社」といいます。）は、個人情報保護の重要性を認識し、適切に利用し、保護することが社会的責任であると考え、個人情報の保護に努めることをお約束いたします。</p>
+                    <h4>1. 個人情報の取得について</h4>
+                    <p>当社は、偽りその他不正の手段によらず適正に個人情報を取得致します。</p>
+                    <h4>2. 個人情報の利用について</h4>
+                    <p>当社は、個人情報を以下の利用目的の達成に必要な範囲内で、利用致します。<br>
+                    以下に定めのない目的で個人情報を利用する場合、あらかじめご本人の同意を得た上で行ないます。</p>
+                    <ol>
+                        <li>お見積のご依頼・ご相談に対する回答及び資料送付</li>
+                        <li>ご注文いただいた商品の発送</li>
+                        <li>セミナー情報、各種商品・サービスに関する情報提供</li>
+                    </ol>
+                    <h4>3. 個人情報の安全管理について</h4>
+                    <p>当社は、取り扱う個人情報の漏洩、滅失またはき損の防止その他の個人情報の安全管理のために必要かつ適切な措置を講じます。</p>
+                    <!-- 以下、適宜追加 -->
+                    <p>（以下略。詳細なプライバシーポリシーの内容は別途ご用意ください）</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>株式会社 未来住建</h4>
+                    <p>〒123-4567 東京都未来区住建町1-2-3</p>
+                    <p>TEL: 03-1234-5678</p>
+                    <p>受付時間: 9:00〜18:00（水曜定休）</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="about.html">私たちについて</a></li>
+                        <li><a href="services.html">サービス</a></li>
+                        <li><a href="works.html">施工事例</a></li>
+                        <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2024 未来住建. All Rights Reserved.</p>
+            <p class="text-center" style="margin-top: 10px;"><a href="#privacy">プライバシーポリシー</a></p> <!-- このページ内なので #privacy のまま -->
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

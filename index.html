@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サロン未来 - モダンで上質なヘアサロン【トップページ】</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="home"> <!-- トップページ識別用クラス -->
+
+    <!-- ▼▼▼ 超リッチ オープニングアニメーション (トップページ専用) ▼▼▼ -->
+    <div id="super-rich-opening">
+        <div class="sro-particles-container">
+            <!-- パーティクルはJSまたはCSSで生成・アニメーション -->
+        </div>
+        <div class="sro-background-shifter"></div>
+        <div class="sro-content">
+            <div class="sro-logo-wrapper">
+                <!-- ロゴをSVGや複数のspanで細かく制御することも可能 -->
+                <span class="sro-logo-char char-sa">サ</span>
+                <span class="sro-logo-char char-ron">ロ</span>
+                <span class="sro-logo-char char-n">ン</span>
+                <span class="sro-logo-char char-mi">未</span>
+                <span class="sro-logo-char char-rai">来</span>
+            </div>
+            <p class="sro-catchphrase">美しさと個性をデザインする</p>
+        </div>
+    </div>
+    <!-- ▲▲▲ 超リッチ オープニングアニメーション (トップページ専用) ▲▲▲ -->
+
+    <!-- 既存の #loader はトップページでは使用しないのでコメントアウトまたは削除 -->
+    <!--
+    <div id="loader">
+        <div class="loader-logo">未来住建</div>
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+    -->
+
+    <!-- ヘッダー (オープニングアニメーション中は非表示、完了後に表示) -->
+    <header id="header" class="initially-hidden">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">サロン未来</a></h1>
+            <nav class="global-nav">
+                <ul>
+                    <li><a href="index.html" class="active">ホーム</a></li>
+                    <li><a href="about.html">サロンについて</a></li>
+                    <li><a href="services.html">メニュー・料金</a></li>
+                    <li><a href="works.html">スタイルギャラリー</a></li>
+                    <li><a href="company.html">アクセス・予約</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ (変更なしなので省略、前回提示したものをそのまま使用してください) -->
+    <main class="initially-hidden">
+        <!-- ヒーローセクション -->
+        <section id="hero">
+            <!--
+            <div class="hero-background-slider">
+                <div class="hero-slide" style="background-image: url('https://via.placeholder.com/1920x1080/aabbcc/ffffff?text=Mirai+Juken+Living');"></div>
+            </div>
+            -->
+            <div class="hero-background-layers">
+                <div class="hero-bg-layer layer-deep" style="background-image: url('images/image_fx (3).jpg');"></div>
+                <div class="hero-bg-layer layer-middle" style="background-image: url('images/image_fx (2).jpg');"></div>
+                <div class="hero-bg-layer layer-near" style="background-image: url('images/image_fx (1).jpg');"></div>
+            </div>
+            <div class="hero-overlay"></div> <!-- コンテンツの可読性向上のためのオーバーレイ -->
+            <div class="hero-content">
+                <h2 class="animate-on-load fade-in-up">あなただけの美しさを、<br>未来へと導くヘアデザイン。</h2>
+                <p class="animate-on-load fade-in-up delay-1">サロン未来は、お客様一人ひとりの個性に寄り添い、<br>モダンで洗練されたスタイルを創造します。</p>
+            </div>
+        </section>
+
+        <!-- 私たちについて (トップページ抜粋) -->
+        <section id="home-about" class="content-section">
+            <div class="container">
+                <h3 class="section-title animate-on-scroll fade-in">サロン未来の想い</h3>
+                <div class="home-about-content">
+                    <div class="home-about-text animate-on-scroll fade-in-left">
+                        <h4>技術と美意識で、理想のスタイルを。</h4>
+                        <p>私たちは、ただ髪を切るだけではありません。お客様の魅力、ライフスタイル、そして未来への輝きを形にすることを目指しています。長年の経験で培った確かな技術と、お客様との対話を大切にする誠実な姿勢で、心からご満足いただけるヘアスタイルをお約束します。</p>
+                        <a href="about.html" class="btn btn-outline">もっと詳しく</a>
+                    </div>
+                    <div class="home-about-image animate-on-scroll fade-in-right">
+                        <img src="images_top/image_fx (5).jpg" alt="未来住建のこだわり">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- サービス概要 (トップページ) -->
+        <section id="home-services" class="content-section bg-light">
+            <div class="container">
+                <h3 class="section-title animate-on-scroll fade-in">メニュー</h3>
+                <div class="service-grid">
+                     <div class="service-item animate-on-scroll fade-in-up">
+                        <img src="images_top/Image_shintiku.jpg" alt="カット＆スタイリング">
+                        <h4>カット＆スタイリング</h4>
+                        <p>お客様の顔立ち、ライフスタイルに合わせたオーダーメイドのヘアスタイルをご提案します。</p>
+                    </div>
+                    <div class="service-item animate-on-scroll fade-in-up delay-1">
+                        <img src="images_top/Image_reform.jpg" alt="カラー＆パーマ">
+                        <h4>カラー＆パーマ</h4>
+                        <p>髪への優しさを考えたオーガニックシステムで、理想の色合いやカールを実現します。</p>
+                    </div>
+                    <div class="service-item animate-on-scroll fade-in-up delay-2">
+                        <img src="images_top/image_tenpo.design.jpg" alt="ヘッドスパ＆トリートメント">
+                        <h4>ヘッドスパ＆トリートメント</h4>
+                        <p>こだわりのヘッドスパでリラックス。上質なトリートメントで髪の美しさをサポートします。</p>
+                    </div>
+                </div>
+                 <div class="text-center animate-on-scroll fade-in-up delay-3">
+                    <a href="services.html" class="btn">全てのメニューを見る</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 施工事例 (トップページ抜粋) -->
+        <section id="home-works" class="content-section">
+            <div class="container">
+                <h3 class="section-title animate-on-scroll fade-in">最新のスタイルギャラリー</h3>
+                <div class="works-grid">
+                    <div class="work-item animate-on-scroll fade-in-up">
+                        <a href="works.html#work1">
+                            <img src="images_top/image_hikaritokaze.jpg" alt="施工事例1">
+                            <div class="work-caption"><h4>エレガントボブ</h4></div>
+                        </a>
+                    </div>
+                    <div class="work-item animate-on-scroll fade-in-up delay-1">
+                         <a href="works.html#work2">
+                            <img src="images_top/image_kononukumori.jpg" alt="施工事例2">
+                            <div class="work-caption"><h4>ナチュラルウェーブ</h4></div>
+                        </a>
+                    </div>
+                    <div class="work-item animate-on-scroll fade-in-up delay-2">
+                        <a href="works.html#work3">
+                            <img src="images_top/share_kazokugatudou.png" alt="施工事例3">
+                            <div class="work-caption"><h4>モダンレイヤー</h4></div>
+                        </a>
+                    </div>
+                </div>
+                <div class="text-center animate-on-scroll fade-in-up delay-3">
+                    <a href="works.html" class="btn">スタイルギャラリーへ</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせ誘導 (CTA) -->
+        <section id="home-contact-cta" class="content-section cta-section">
+            <div class="container text-center">
+                <h3 class="section-title-cta animate-on-scroll fade-in">あなたらしい美しさを、一緒に見つけませんか</h3>
+                <p class="animate-on-scroll fade-in-up">サロン未来が、あなたの理想のヘアスタイルを全力でサポートします。</p>
+                <a href="company.html#contact-form" class="btn btn-primary animate-on-scroll fade-in-up delay-1">ご予約・お問い合わせ</a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="initially-hidden">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>サロン未来</h4>
+                    <p>〒123-4567 東京都未来区美容町1-2-3</p>
+                    <p>TEL: 03-5678-9012</p>
+                    <p>営業時間: 10:00〜20:00（月曜定休）</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="about.html">サロンについて</a></li>
+                        <li><a href="services.html">メニュー・料金</a></li>
+                        <li><a href="works.html">スタイルギャラリー</a></li>
+                        <li><a href="company.html">アクセス・予約</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2024 サロン未来. All Rights Reserved.</p>
+            <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
