@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>施工事例 - 未来住建</title>
+    <title>スタイルギャラリー - サロン未来</title>
+    <meta name="description" content="サロン未来の最新ヘアスタイルギャラリー。トレンドからクラシックまで、豊富なスタイル事例をご紹介します。">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
     <div id="loader">
-        <div class="loader-logo">未来住建</div>
+        <div class="loader-logo">サロン未来</div>
         <div class="loader-dots">
             <div class="loader-dot"></div>
             <div class="loader-dot"></div>
@@ -21,14 +22,14 @@
 
     <header id="header">
         <div class="container">
-            <h1 class="logo"><a href="index.html">未来住建</a></h1>
+            <h1 class="logo"><a href="index.html">サロン未来</a></h1>
             <nav class="global-nav">
                 <ul>
                     <li><a href="index.html">ホーム</a></li>
-                    <li><a href="about.html">私たちについて</a></li>
-                    <li><a href="services.html">サービス</a></li>
-                    <li><a href="works.html" class="active">施工事例</a></li>
-                    <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                    <li><a href="about.html">サロンについて</a></li>
+                    <li><a href="services.html">メニュー・料金</a></li>
+                    <li><a href="works.html" class="active">スタイルギャラリー</a></li>
+                    <li><a href="company.html">アクセス・予約</a></li>
                 </ul>
             </nav>
             <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
@@ -42,86 +43,265 @@
     <main>
         <section class="page-title-bar">
             <div class="container">
-                <h1>施工事例</h1>
-                <p>未来住建が手がけたこだわりの住まいをご覧ください</p>
+                <h1>スタイルギャラリー</h1>
+                <p>トレンドからクラシックまで、多彩なヘアスタイルをご紹介</p>
             </div>
         </section>
 
-        <section id="works-list" class="content-section">
+        <!-- フィルターナビゲーション -->
+        <section id="style-filters" class="content-section">
             <div class="container">
-                <!-- フィルター機能は今回は省略（必要なら後で追加） -->
-                <!-- <div class="works-filter">
-                    <button class="active">すべて</button>
-                    <button>新築</button>
-                    <button>リフォーム</button>
-                </div> -->
-
-                <div class="works-grid large-grid">
-                    <article id="work1" class="work-item animate-on-scroll fade-in">
-                        <a href="#">
-                            <img src="images_sekouzirei/Image_kazokunoegao.jpg" alt="施工事例1">
-                            <div class="work-caption">
-                                <h4>光と風が通る、開放的なLDKのある家</h4>
-                                <p>カテゴリ: 新築注文住宅</p>
-                                <span class="work-tag">モダン</span> <span class="work-tag">自然光</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article id="work2" class="work-item animate-on-scroll fade-in delay-1">
-                        <a href="#">
-                            <img src="images_sekouzirei/image_kononukumori.jpg" alt="施工事例2">
-                            <div class="work-caption">
-                                <h4>木の温もりと家族の笑顔が集う家</h4>
-                                <p>カテゴリ: 新築注文住宅</p>
-                                <span class="work-tag">ナチュラル</span> <span class="work-tag">無垢材</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article id="work3" class="work-item animate-on-scroll fade-in">
-                        <a href="#">
-                            <img src="images_sekouzirei/image_tiku50nen.png" alt="施工事例3">
-                            <div class="work-caption">
-                                <h4>築50年の古民家を現代の暮らしへ再生</h4>
-                                <p>カテゴリ: リノベーション</p>
-                                <span class="work-tag">古民家再生</span> <span class="work-tag">和モダン</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="work-item animate-on-scroll fade-in delay-1"> <!-- id が必要な場合は work4 など付与 -->
-                        <a href="#">
-                            <img src="images_sekouzirei/image_garezi.png" alt="施工事例4">
-                            <div class="work-caption">
-                                <h4>趣味を楽しむガレージハウス</h4>
-                                <p>カテゴリ: 新築注文住宅</p>
-                                <span class="work-tag">ガレージ</span> <span class="work-tag">インダストリアル</span>
-                            </div>
-                        </a>
-                    </article>
-                    <article class="work-item animate-on-scroll fade-in">
-                        <a href="#">
-                            <img src="images_sekouzirei/Image_shintiku.jpg" alt="施工事例5">
-                            <div class="work-caption">
-                                <h4>都会的なデザインのコンパクト住宅</h4>
-                                <p>カテゴリ: 新築注文住宅</p>
-                                <span class="work-tag">都市型</span> <span class="work-tag">ミニマル</span>
-                            </div>
-                        </a>
-                    </article>
-                     <article class="work-item animate-on-scroll fade-in delay-1">
-                        <a href="#">
-                            <img src="images_sekouzirei/share_kicdhin.png" alt="施工事例6">
-                            <div class="work-caption">
-                                <h4>カフェ風キッチンのある家</h4>
-                                <p>カテゴリ: リフォーム</p>
-                                <span class="work-tag">キッチン</span> <span class="work-tag">デザインリフォーム</span>
-                            </div>
-                        </a>
-                    </article>
+                <div class="filter-nav animate-on-scroll fade-in">
+                    <button class="filter-btn active" data-filter="all">すべて</button>
+                    <button class="filter-btn" data-filter="short">ショート</button>
+                    <button class="filter-btn" data-filter="bob">ボブ</button>
+                    <button class="filter-btn" data-filter="medium">ミディアム</button>
+                    <button class="filter-btn" data-filter="long">ロング</button>
+                    <button class="filter-btn" data-filter="mens">メンズ</button>
+                    <button class="filter-btn" data-filter="color">カラースタイル</button>
                 </div>
-                <!-- ページネーションは今回は省略（必要なら後で追加） -->
-                <!-- <div class="pagination">
-                    <span>1</span> <a href="#">2</a> <a href="#">3</a> <a href="#">次へ »</a>
-                </div> -->
+            </div>
+        </section>
+
+        <!-- スタイルギャラリー -->
+        <section id="gallery" class="content-section">
+            <div class="container">
+                <div class="gallery-grid animate-on-scroll fade-in-up">
+
+                    <!-- ショートスタイル -->
+                    <div class="gallery-item" data-category="short" id="style1">
+                        <img src="images_sekouzirei/Image_shintiku.jpg" alt="大人可愛いショートボブ">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>大人可愛いショートボブ</h4>
+                                <p>女性らしさを残した上品なショートスタイル</p>
+                                <div class="style-tags">
+                                    <span>ショート</span>
+                                    <span>ナチュラル</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="short" id="style2">
+                        <img src="images_sekouzirei/image_garezi.png" alt="スタイリッシュショート">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>スタイリッシュショート</h4>
+                                <p>都会的でモダンな印象のショートカット</p>
+                                <div class="style-tags">
+                                    <span>ショート</span>
+                                    <span>モダン</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ボブスタイル -->
+                    <div class="gallery-item" data-category="bob" id="style3">
+                        <img src="images_sekouzirei/Image_kazokunoegao.jpg" alt="エレガントボブ">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>エレガントボブ</h4>
+                                <p>上品で洗練されたクラシックボブ</p>
+                                <div class="style-tags">
+                                    <span>ボブ</span>
+                                    <span>エレガント</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="bob" id="style4">
+                        <img src="images_sekouzirei/image_kononukumori.jpg" alt="ナチュラルウェーブボブ">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>ナチュラルウェーブボブ</h4>
+                                <p>柔らかな質感が魅力的なウェーブボブ</p>
+                                <div class="style-tags">
+                                    <span>ボブ</span>
+                                    <span>ウェーブ</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ミディアムスタイル -->
+                    <div class="gallery-item" data-category="medium" id="style5">
+                        <img src="images_sekouzirei/share_kicdhin.png" alt="レイヤードミディアム">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>レイヤードミディアム</h4>
+                                <p>動きのある軽やかなミディアムスタイル</p>
+                                <div class="style-tags">
+                                    <span>ミディアム</span>
+                                    <span>レイヤー</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="medium" id="style6">
+                        <img src="images_sekouzirei/image_tiku50nen.png" alt="カジュアルミディアム">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>カジュアルミディアム</h4>
+                                <p>日常使いしやすいナチュラルミディアム</p>
+                                <div class="style-tags">
+                                    <span>ミディアム</span>
+                                    <span>カジュアル</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- カラースタイル -->
+                    <div class="gallery-item" data-category="color long" id="style7">
+                        <img src="images_top/image_hikaritokaze.jpg" alt="ハイライトロング">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>ハイライトロング</h4>
+                                <p>立体感のあるハイライトで魅力的に</p>
+                                <div class="style-tags">
+                                    <span>ロング</span>
+                                    <span>ハイライト</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="color medium" id="style8">
+                        <img src="images_top/image_kononukumori.jpg" alt="グラデーションカラー">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>グラデーションカラー</h4>
+                                <p>自然なグラデーションが美しいスタイル</p>
+                                <div class="style-tags">
+                                    <span>ミディアム</span>
+                                    <span>グラデーション</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- メンズスタイル -->
+                    <div class="gallery-item" data-category="mens" id="style9">
+                        <img src="images_top/image_tenpo.design.jpg" alt="ビジネスショート">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>ビジネスショート</h4>
+                                <p>清潔感のあるビジネス向けスタイル</p>
+                                <div class="style-tags">
+                                    <span>メンズ</span>
+                                    <span>ビジネス</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="mens" id="style10">
+                        <img src="images_top/share_kazokugatudou.png" alt="カジュアルメンズ">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>カジュアルメンズ</h4>
+                                <p>自然体で格好いいカジュアルスタイル</p>
+                                <div class="style-tags">
+                                    <span>メンズ</span>
+                                    <span>カジュアル</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ロングスタイル -->
+                    <div class="gallery-item" data-category="long" id="style11">
+                        <img src="images_top/Image_reform.jpg" alt="エレガントロング">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>エレガントロング</h4>
+                                <p>女性らしさを最大限に引き出すロングヘア</p>
+                                <div class="style-tags">
+                                    <span>ロング</span>
+                                    <span>エレガント</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="gallery-item" data-category="long" id="style12">
+                        <img src="images_top/Image_shintiku.jpg" alt="ナチュラルロング">
+                        <div class="gallery-overlay">
+                            <div class="gallery-info">
+                                <h4>ナチュラルロング</h4>
+                                <p>自然な美しさが際立つロングスタイル</p>
+                                <div class="style-tags">
+                                    <span>ロング</span>
+                                    <span>ナチュラル</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- スタイル詳細セクション -->
+        <section id="style-details" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">人気スタイルの詳細</h2>
+
+                <div class="style-detail-grid animate-on-scroll fade-in-up">
+                    <div class="style-detail-item">
+                        <img src="images_top/image_fx (5).jpg" alt="トレンドスタイル詳細">
+                        <div class="style-detail-content">
+                            <h4>今季注目のトレンドスタイル</h4>
+                            <p>2024年秋冬のトレンドを取り入れた、洗練されたスタイルです。レイヤーカットで軽やかさを演出し、ナチュラルなカラーで上品に仕上げています。</p>
+                            <div class="style-features">
+                                <div class="feature-item">
+                                    <strong>施術時間:</strong> 約2時間
+                                </div>
+                                <div class="feature-item">
+                                    <strong>おすすめの方:</strong> オフィスワークの方、上品な印象をお求めの方
+                                </div>
+                                <div class="feature-item">
+                                    <strong>メンテナンス:</strong> 6-8週間に1回
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="style-detail-item">
+                        <img src="images_about/image_coordinate.jpg" alt="カラースタイル詳細">
+                        <div class="style-detail-content">
+                            <h4>季節感のあるカラースタイル</h4>
+                            <p>肌色に合わせたパーソナルカラー診断を基に、お客様だけの特別な色合いをご提案。髪への負担を最小限に抑えたオーガニックカラーを使用しています。</p>
+                            <div class="style-features">
+                                <div class="feature-item">
+                                    <strong>施術時間:</strong> 約3時間
+                                </div>
+                                <div class="feature-item">
+                                    <strong>おすすめの方:</strong> イメージチェンジしたい方、個性を表現したい方
+                                </div>
+                                <div class="feature-item">
+                                    <strong>メンテナンス:</strong> 4-6週間に1回
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ご予約のご案内 -->
+        <section id="booking-cta" class="content-section">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll fade-in">理想のスタイルを見つけましたか？</h2>
+                <p class="animate-on-scroll fade-in-up">お気に入りのスタイルがございましたら、お気軽にご相談ください。<br>経験豊富なスタイリストが、あなたに最適なスタイルをご提案いたします。</p>
+                <div class="cta-buttons animate-on-scroll fade-in-up delay-1">
+                    <a href="company.html#booking" class="btn btn-primary">ご予約はこちら</a>
+                    <a href="company.html#contact" class="btn btn-outline">スタイル相談</a>
+                </div>
             </div>
         </section>
     </main>
@@ -130,22 +310,22 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-info">
-                    <h4>株式会社 未来住建</h4>
-                    <p>〒123-4567 東京都未来区住建町1-2-3</p>
-                    <p>TEL: 03-1234-5678</p>
-                    <p>受付時間: 9:00〜18:00（水曜定休）</p>
+                    <h4>サロン未来</h4>
+                    <p>〒123-4567 東京都未来区美容町1-2-3</p>
+                    <p>TEL: 03-5678-9012</p>
+                    <p>営業時間: 10:00〜20:00（月曜定休）</p>
                 </div>
                 <div class="footer-nav">
                     <ul>
                         <li><a href="index.html">ホーム</a></li>
-                        <li><a href="about.html">私たちについて</a></li>
-                        <li><a href="services.html">サービス</a></li>
-                        <li><a href="works.html">施工事例</a></li>
-                        <li><a href="company.html">会社概要・お問い合わせ</a></li>
+                        <li><a href="about.html">サロンについて</a></li>
+                        <li><a href="services.html">メニュー・料金</a></li>
+                        <li><a href="works.html">スタイルギャラリー</a></li>
+                        <li><a href="company.html">アクセス・予約</a></li>
                     </ul>
                 </div>
             </div>
-            <p class="copyright">© 2024 未来住建. All Rights Reserved.</p>
+            <p class="copyright">© 2024 サロン未来. All Rights Reserved.</p>
             <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p>
         </div>
     </footer>
@@ -153,4 +333,3 @@
     <script src="js/script.js"></script>
 </body>
 </html>
-<!-- Vercel deploy test on main branch - Attempt X -->
