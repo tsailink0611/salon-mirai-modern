@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>スタッフ紹介 - サロン未来</title>
+    <meta name="description" content="サロン未来のスタイリスト紹介。経験豊富なプロフェッショナルがお客様の理想のスタイルを実現します。">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-logo">サロン未来</div>
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">サロン未来</a></h1>
+            <nav class="global-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="about.html">サロンについて</a></li>
+                    <li><a href="services.html">メニュー・料金</a></li>
+                    <li><a href="works.html">スタイルギャラリー</a></li>
+                    <li><a href="staff.html" class="active">スタッフ紹介</a></li>
+                    <li><a href="campaign.html">キャンペーン</a></li>
+                    <li><a href="company.html">アクセス・予約</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-bar">
+            <div class="container">
+                <h1>スタッフ紹介</h1>
+                <p>経験豊富なプロフェッショナルがお客様をお待ちしています</p>
+            </div>
+        </section>
+
+        <!-- スタッフ一覧 -->
+        <section id="staff-members" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">Our Professional Team</h2>
+                <div class="staff-grid animate-on-scroll fade-in-up">
+
+                    <!-- 代表スタイリスト -->
+                    <div class="staff-card" data-staff="tanaka">
+                        <div class="staff-image">
+                            <img src="images_about/Image_daihyou.jpg" alt="田中美穂 - 代表スタイリスト">
+                            <div class="staff-overlay">
+                                <button class="btn btn-outline staff-detail-btn" data-target="tanaka-detail">詳細を見る</button>
+                            </div>
+                        </div>
+                        <div class="staff-info">
+                            <h3>田中 美穂</h3>
+                            <p class="staff-position">代表スタイリスト / サロンオーナー</p>
+                            <p class="staff-experience">経験年数: 15年</p>
+                            <div class="staff-specialties">
+                                <span class="specialty-tag">カット</span>
+                                <span class="specialty-tag">カラー</span>
+                                <span class="specialty-tag">パーマ</span>
+                                <span class="specialty-tag">ブライダル</span>
+                            </div>
+                            <div class="staff-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">5.0 (127件のレビュー)</span>
+                            </div>
+                            <p class="staff-message">"お客様の魅力を最大限に引き出すスタイル提案を心がけています"</p>
+                        </div>
+                    </div>
+
+                    <!-- シニアスタイリスト -->
+                    <div class="staff-card" data-staff="sato">
+                        <div class="staff-image">
+                            <img src="images_about/Image_sekkeishi.jpg" alt="佐藤雅人 - シニアスタイリスト">
+                            <div class="staff-overlay">
+                                <button class="btn btn-outline staff-detail-btn" data-target="sato-detail">詳細を見る</button>
+                            </div>
+                        </div>
+                        <div class="staff-info">
+                            <h3>佐藤 雅人</h3>
+                            <p class="staff-position">シニアスタイリスト</p>
+                            <p class="staff-experience">経験年数: 12年</p>
+                            <div class="staff-specialties">
+                                <span class="specialty-tag">メンズカット</span>
+                                <span class="specialty-tag">トレンドスタイル</span>
+                                <span class="specialty-tag">ヘッドスパ</span>
+                                <span class="specialty-tag">デジタルパーマ</span>
+                            </div>
+                            <div class="staff-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.9 (89件のレビュー)</span>
+                            </div>
+                            <p class="staff-message">"トレンドを取り入れた、お客様らしいスタイルをご提案します"</p>
+                        </div>
+                    </div>
+
+                    <!-- スタイリスト -->
+                    <div class="staff-card" data-staff="yamada">
+                        <div class="staff-image">
+                            <img src="images_about/image_coordinate.jpg" alt="山田愛 - スタイリスト">
+                            <div class="staff-overlay">
+                                <button class="btn btn-outline staff-detail-btn" data-target="yamada-detail">詳細を見る</button>
+                            </div>
+                        </div>
+                        <div class="staff-info">
+                            <h3>山田 愛</h3>
+                            <p class="staff-position">スタイリスト</p>
+                            <p class="staff-experience">経験年数: 8年</p>
+                            <div class="staff-specialties">
+                                <span class="specialty-tag">ボブスタイル</span>
+                                <span class="specialty-tag">ナチュラルカラー</span>
+                                <span class="specialty-tag">トリートメント</span>
+                                <span class="specialty-tag">縮毛矯正</span>
+                            </div>
+                            <div class="staff-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.8 (76件のレビュー)</span>
+                            </div>
+                            <p class="staff-message">"丁寧なカウンセリングで、お客様に寄り添ったスタイルを"</p>
+                        </div>
+                    </div>
+
+                    <!-- アシスタント -->
+                    <div class="staff-card" data-staff="suzuki">
+                        <div class="staff-image">
+                            <img src="images_about/Image_kodawarinoie.jpg" alt="鈴木健太 - アシスタント">
+                            <div class="staff-overlay">
+                                <button class="btn btn-outline staff-detail-btn" data-target="suzuki-detail">詳細を見る</button>
+                            </div>
+                        </div>
+                        <div class="staff-info">
+                            <h3>鈴木 健太</h3>
+                            <p class="staff-position">アシスタント</p>
+                            <p class="staff-experience">経験年数: 3年</p>
+                            <div class="staff-specialties">
+                                <span class="specialty-tag">シャンプー</span>
+                                <span class="specialty-tag">ヘッドスパ</span>
+                                <span class="specialty-tag">ブロー</span>
+                                <span class="specialty-tag">カラーアシスト</span>
+                            </div>
+                            <div class="staff-rating">
+                                <div class="rating-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <span class="rating-text">4.7 (45件のレビュー)</span>
+                            </div>
+                            <p class="staff-message">"心地よいシャンプーとヘッドスパで、癒しの時間を提供します"</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- スタッフ詳細モーダル（田中美穂） -->
+        <div id="tanaka-detail" class="staff-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>田中 美穂</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="staff-detail-grid">
+                        <div class="staff-detail-image">
+                            <img src="images_about/Image_daihyou.jpg" alt="田中美穂">
+                        </div>
+                        <div class="staff-detail-info">
+                            <h4>代表スタイリスト / サロンオーナー</h4>
+                            <div class="detail-section">
+                                <h5>経歴・資格</h5>
+                                <ul>
+                                    <li>美容師免許取得（2009年）</li>
+                                    <li>ブライダルスタイリスト認定（2012年）</li>
+                                    <li>カラーリスト検定1級（2015年）</li>
+                                    <li>ヘッドスパセラピスト認定（2018年）</li>
+                                    <li>サロン未来オープン（2018年）</li>
+                                </ul>
+                            </div>
+                            <div class="detail-section">
+                                <h5>得意なスタイル</h5>
+                                <p>エレガントなボブスタイルから、トレンドを取り入れたレイヤーカットまで幅広く対応。特にお客様の骨格を活かしたカットと、肌色に合わせたカラー提案が得意です。</p>
+                            </div>
+                            <div class="detail-section">
+                                <h5>お客様へのメッセージ</h5>
+                                <p>お客様一人ひとりの魅力を最大限に引き出すことを心がけています。ライフスタイルに合った、美しく扱いやすいスタイルをご提案いたします。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-section">
+                        <h5>田中 美穂を指名予約</h5>
+                        <div class="booking-buttons">
+                            <a href="company.html#booking" class="btn btn-primary">Web予約</a>
+                            <a href="tel:03-5678-9012" class="btn btn-outline">電話予約</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 他のスタッフ詳細モーダルも同様に作成 -->
+        <!-- ... 省略（実際は全スタッフ分作成） -->
+
+        <!-- スタッフ指名予約のご案内 -->
+        <section id="staff-booking" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">スタッフ指名について</h2>
+                <div class="booking-info-grid animate-on-scroll fade-in-up">
+                    <div class="booking-info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <h4>指名料金</h4>
+                        <p>代表・シニア: +1,000円<br>スタイリスト: +500円<br>アシスタント: 指名料なし</p>
+                    </div>
+                    <div class="booking-info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h4>予約方法</h4>
+                        <p>Web予約または電話予約時にスタッフ名をお伝えください。人気スタッフは早めのご予約をおすすめします。</p>
+                    </div>
+                    <div class="booking-info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>カウンセリング</h4>
+                        <p>初回は30分程度のカウンセリング時間をいただき、お客様のご要望を詳しくお聞きします。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お客様の声 -->
+        <section id="customer-reviews" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">お客様の声</h2>
+                <div class="reviews-grid animate-on-scroll fade-in-up">
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="customer-initial">A.S</div>
+                            <div class="review-info">
+                                <p class="customer-name">A.S様（20代・女性）</p>
+                                <p class="stylist-name">担当：田中美穂</p>
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">丁寧なカウンセリングで、私の要望を細かく聞いてくださいました。仕上がりも期待以上で、毎日のスタイリングが楽になりました！</p>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="customer-initial">M.T</div>
+                            <div class="review-info">
+                                <p class="customer-name">M.T様（30代・男性）</p>
+                                <p class="stylist-name">担当：佐藤雅人</p>
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">メンズカットが得意な佐藤さんに担当していただきました。ビジネスシーンにぴったりのスタイルで、同僚からも好評です。</p>
+                    </div>
+
+                    <div class="review-item">
+                        <div class="review-header">
+                            <div class="customer-initial">Y.K</div>
+                            <div class="review-info">
+                                <p class="customer-name">Y.K様（40代・女性）</p>
+                                <p class="stylist-name">担当：山田愛</p>
+                                <div class="review-stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="review-text">ボブスタイルが得意な山田さんのカットで、理想通りの仕上がりに。カラーも肌なじみが良く、若々しく見えると言われます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>サロン未来</h4>
+                    <p>〒123-4567 東京都未来区美容町1-2-3</p>
+                    <p>TEL: 03-5678-9012</p>
+                    <p>営業時間: 10:00〜20:00（月曜定休）</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="about.html">サロンについて</a></li>
+                        <li><a href="services.html">メニュー・料金</a></li>
+                        <li><a href="works.html">スタイルギャラリー</a></li>
+                        <li><a href="staff.html">スタッフ紹介</a></li>
+                        <li><a href="campaign.html">キャンペーン</a></li>
+                        <li><a href="company.html">アクセス・予約</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2024 サロン未来. All Rights Reserved.</p>
+            <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // スタッフ詳細モーダル機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const detailBtns = document.querySelectorAll('.staff-detail-btn');
+            const modals = document.querySelectorAll('.staff-modal');
+            const closeBtns = document.querySelectorAll('.modal-close');
+
+            detailBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-target');
+                    const modal = document.getElementById(targetId);
+                    if (modal) {
+                        modal.style.display = 'flex';
+                    }
+                });
+            });
+
+            closeBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.closest('.staff-modal').style.display = 'none';
+                });
+            });
+
+            // モーダル外クリックで閉じる
+            modals.forEach(modal => {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

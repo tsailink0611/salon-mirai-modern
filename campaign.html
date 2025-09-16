@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>キャンペーン情報 - サロン未来</title>
+    <meta name="description" content="サロン未来の最新キャンペーン情報。お得なプランや季節限定メニューをご紹介します。SNSでも最新情報を発信中！">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/campaign.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loader-logo">サロン未来</div>
+        <div class="loader-dots">
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+            <div class="loader-dot"></div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html">サロン未来</a></h1>
+            <nav class="global-nav">
+                <ul>
+                    <li><a href="index.html">ホーム</a></li>
+                    <li><a href="about.html">サロンについて</a></li>
+                    <li><a href="services.html">メニュー・料金</a></li>
+                    <li><a href="works.html">スタイルギャラリー</a></li>
+                    <li><a href="staff.html">スタッフ紹介</a></li>
+                    <li><a href="campaign.html" class="active">キャンペーン</a></li>
+                    <li><a href="company.html">アクセス・予約</a></li>
+                </ul>
+            </nav>
+            <button class="hamburger-menu" id="hamburger-menu" aria-label="メニューを開く" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-title-bar">
+            <div class="container">
+                <h1>キャンペーン情報</h1>
+                <p>お得なプランと季節限定メニューでより美しく</p>
+            </div>
+        </section>
+
+        <!-- SNSフォローセクション -->
+        <section id="social-follow" class="content-section bg-light">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll fade-in">最新情報をSNSでチェック</h2>
+                <p class="animate-on-scroll fade-in-up">サロン未来の最新キャンペーンやスタイル情報をSNSで発信中！フォローして特別情報をGETしよう</p>
+                <div class="social-links animate-on-scroll fade-in-up delay-1">
+                    <a href="#" class="social-link instagram" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                        <small>@salon_mirai_official</small>
+                    </a>
+                    <a href="#" class="social-link twitter" target="_blank">
+                        <i class="fab fa-x-twitter"></i>
+                        <span>X (Twitter)</span>
+                        <small>@salon_mirai</small>
+                    </a>
+                    <a href="#" class="social-link line" target="_blank">
+                        <i class="fab fa-line"></i>
+                        <span>LINE</span>
+                        <small>友だち追加でクーポン配信</small>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 現在開催中のキャンペーン -->
+        <section id="current-campaigns" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">現在開催中のキャンペーン</h2>
+                <div class="campaign-grid animate-on-scroll fade-in-up">
+
+                    <div class="campaign-card featured">
+                        <div class="campaign-badge">🔥人気</div>
+                        <img src="images_top/image_fx (5).jpg" alt="秋冬限定カラーキャンペーン">
+                        <div class="campaign-content">
+                            <h3>秋冬限定カラーキャンペーン</h3>
+                            <p class="campaign-period">2024年9月1日〜11月30日</p>
+                            <p>季節感あふれるトレンドカラーを特別価格でご提供。パーソナルカラー診断付きで、あなたに最適な色合いを見つけましょう。</p>
+                            <div class="campaign-price">
+                                <span class="original-price">通常 ¥8,500</span>
+                                <span class="sale-price">¥6,800</span>
+                                <span class="discount">20%OFF</span>
+                            </div>
+                            <div class="campaign-tags">
+                                <span>カラー</span>
+                                <span>パーソナル診断</span>
+                                <span>期間限定</span>
+                            </div>
+                            <a href="company.html#booking" class="btn btn-primary">今すぐ予約</a>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card">
+                        <div class="campaign-badge">✨新規</div>
+                        <img src="images_about/image_coordinate.jpg" alt="初回限定トライアルセット">
+                        <div class="campaign-content">
+                            <h3>初回限定トライアルセット</h3>
+                            <p class="campaign-period">新規のお客様限定</p>
+                            <p>初回ご来店のお客様に特別価格でカット+シャンプー+ブローのセットをご提供。お気軽にサロン未来の技術をお試しください。</p>
+                            <div class="campaign-price">
+                                <span class="original-price">通常 ¥5,500</span>
+                                <span class="sale-price">¥3,980</span>
+                                <span class="discount">初回限定</span>
+                            </div>
+                            <div class="campaign-tags">
+                                <span>カット</span>
+                                <span>初回限定</span>
+                                <span>お試し</span>
+                            </div>
+                            <a href="company.html#booking" class="btn btn-outline">詳細を見る</a>
+                        </div>
+                    </div>
+
+                    <div class="campaign-card">
+                        <img src="images_about/Image_kodawarinoie.jpg" alt="ヘッドスパリラクゼーション">
+                        <div class="campaign-content">
+                            <h3>プレミアムヘッドスパ体験</h3>
+                            <p class="campaign-period">2024年9月15日〜10月15日</p>
+                            <p>疲れた頭皮と心を癒すプレミアムヘッドスパコース。アロマオイルを使用した極上のリラクゼーション体験をお楽しみください。</p>
+                            <div class="campaign-price">
+                                <span class="original-price">通常 ¥4,500</span>
+                                <span class="sale-price">¥3,200</span>
+                                <span class="discount">30%OFF</span>
+                            </div>
+                            <div class="campaign-tags">
+                                <span>ヘッドスパ</span>
+                                <span>リラクゼーション</span>
+                                <span>アロマ</span>
+                            </div>
+                            <a href="company.html#booking" class="btn btn-outline">予約する</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SNS連携フィード -->
+        <section id="social-feed" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">SNSから最新情報</h2>
+
+                <div class="social-tabs animate-on-scroll fade-in-up">
+                    <button class="tab-btn active" data-tab="instagram">
+                        <i class="fab fa-instagram"></i>
+                        Instagram
+                    </button>
+                    <button class="tab-btn" data-tab="twitter">
+                        <i class="fab fa-x-twitter"></i>
+                        X (Twitter)
+                    </button>
+                </div>
+
+                <div class="social-content">
+                    <!-- Instagram Feed -->
+                    <div id="instagram" class="tab-content active">
+                        <div class="instagram-grid">
+                            <div class="instagram-post">
+                                <img src="images_top/image_hikaritokaze.jpg" alt="Instagram投稿">
+                                <div class="post-overlay">
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 124</span>
+                                        <span><i class="fas fa-comment"></i> 12</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="instagram-post">
+                                <img src="images_top/image_kononukumori.jpg" alt="Instagram投稿">
+                                <div class="post-overlay">
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 98</span>
+                                        <span><i class="fas fa-comment"></i> 8</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="instagram-post">
+                                <img src="images_sekouzirei/Image_shintiku.jpg" alt="Instagram投稿">
+                                <div class="post-overlay">
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 156</span>
+                                        <span><i class="fas fa-comment"></i> 23</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="instagram-post">
+                                <img src="images_sekouzirei/image_garezi.png" alt="Instagram投稿">
+                                <div class="post-overlay">
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 87</span>
+                                        <span><i class="fas fa-comment"></i> 5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="instagram-post">
+                                <img src="images_sekouzirei/Image_kazokunoegao.jpg" alt="Instagram投稿">
+                                <div class="post-overlay">
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 203</span>
+                                        <span><i class="fas fa-comment"></i> 34</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="instagram-post">
+                                <img src="images_sekouzirei/image_kononukumori.jpg" alt="Instagram投稿">
+                                <div class="post-overlay">
+                                    <div class="post-stats">
+                                        <span><i class="fas fa-heart"></i> 142</span>
+                                        <span><i class="fas fa-comment"></i> 18</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <a href="#" class="btn btn-outline" target="_blank">
+                                <i class="fab fa-instagram"></i>
+                                Instagramで全ての投稿を見る
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Twitter Feed -->
+                    <div id="twitter" class="tab-content">
+                        <div class="twitter-timeline">
+                            <div class="tweet">
+                                <div class="tweet-header">
+                                    <div class="tweet-avatar">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="tweet-info">
+                                        <span class="tweet-name">サロン未来</span>
+                                        <span class="tweet-handle">@salon_mirai</span>
+                                        <span class="tweet-time">2時間前</span>
+                                    </div>
+                                </div>
+                                <p class="tweet-text">
+                                    🍂秋冬カラーキャンペーン開催中！
+                                    季節にぴったりのトレンドカラーを特別価格でご提供✨
+                                    パーソナルカラー診断付きで、あなたに似合う色を見つけましょう💄
+                                    #サロン未来 #秋冬カラー #パーソナルカラー
+                                </p>
+                                <div class="tweet-stats">
+                                    <span><i class="fas fa-heart"></i> 24</span>
+                                    <span><i class="fas fa-retweet"></i> 8</span>
+                                    <span><i class="fas fa-comment"></i> 3</span>
+                                </div>
+                            </div>
+
+                            <div class="tweet">
+                                <div class="tweet-header">
+                                    <div class="tweet-avatar">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="tweet-info">
+                                        <span class="tweet-name">サロン未来</span>
+                                        <span class="tweet-handle">@salon_mirai</span>
+                                        <span class="tweet-time">1日前</span>
+                                    </div>
+                                </div>
+                                <p class="tweet-text">
+                                    本日のお客様のビフォーアフター📸
+                                    ショートボブからエレガントなロングヘアに大変身！
+                                    お客様の笑顔が何よりも嬉しいです😊
+                                    #ヘアスタイル #ビフォーアフター #ロングヘア
+                                </p>
+                                <div class="tweet-stats">
+                                    <span><i class="fas fa-heart"></i> 45</span>
+                                    <span><i class="fas fa-retweet"></i> 12</span>
+                                    <span><i class="fas fa-comment"></i> 7</span>
+                                </div>
+                            </div>
+
+                            <div class="tweet">
+                                <div class="tweet-header">
+                                    <div class="tweet-avatar">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="tweet-info">
+                                        <span class="tweet-name">サロン未来</span>
+                                        <span class="tweet-handle">@salon_mirai</span>
+                                        <span class="tweet-time">3日前</span>
+                                    </div>
+                                </div>
+                                <p class="tweet-text">
+                                    🌟新メニュー「プレミアムヘッドスパ」スタート！
+                                    アロマオイルを使用した極上のリラクゼーション体験💆‍♀️
+                                    疲れた日常から解放されませんか？
+                                    #ヘッドスパ #リラクゼーション #新メニュー
+                                </p>
+                                <div class="tweet-stats">
+                                    <span><i class="fas fa-heart"></i> 32</span>
+                                    <span><i class="fas fa-retweet"></i> 15</span>
+                                    <span><i class="fas fa-comment"></i> 9</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center" style="margin-top: 30px;">
+                            <a href="#" class="btn btn-outline" target="_blank">
+                                <i class="fab fa-x-twitter"></i>
+                                Xで全てのツイートを見る
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特別キャンペーン -->
+        <section id="special-offers" class="content-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll fade-in">期間限定特別キャンペーン</h2>
+
+                <div class="special-offer-banner animate-on-scroll fade-in-up">
+                    <div class="offer-content">
+                        <div class="offer-badge">🎉期間限定</div>
+                        <h3>友達紹介キャンペーン</h3>
+                        <p>お友達をご紹介いただくと、紹介者・被紹介者ともに次回施術20%OFF！さらに被紹介者の方は初回限定価格でご利用いただけます。</p>
+                        <div class="offer-details">
+                            <div class="offer-benefit">
+                                <i class="fas fa-gift"></i>
+                                <span>紹介者：次回20%OFF</span>
+                            </div>
+                            <div class="offer-benefit">
+                                <i class="fas fa-star"></i>
+                                <span>被紹介者：初回特別価格</span>
+                            </div>
+                        </div>
+                        <a href="company.html#contact" class="btn btn-primary">詳細を問い合わせる</a>
+                    </div>
+                    <div class="offer-image">
+                        <img src="images_top/share_kazokugatudou.png" alt="友達紹介キャンペーン">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ニュースレター登録 -->
+        <section id="newsletter" class="content-section bg-light">
+            <div class="container text-center">
+                <h2 class="section-title animate-on-scroll fade-in">キャンペーン情報をいち早くお届け</h2>
+                <p class="animate-on-scroll fade-in-up">メールマガジンにご登録いただくと、新しいキャンペーン情報や特別クーポンを優先的にお送りします。</p>
+
+                <form class="newsletter-form animate-on-scroll fade-in-up delay-1">
+                    <div class="form-group-inline">
+                        <input type="email" placeholder="メールアドレスを入力" required>
+                        <button type="submit" class="btn btn-primary">登録する</button>
+                    </div>
+                    <div class="form-note">
+                        <small>※配信停止はいつでも可能です。個人情報は適切に保護されます。</small>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h4>サロン未来</h4>
+                    <p>〒123-4567 東京都未来区美容町1-2-3</p>
+                    <p>TEL: 03-5678-9012</p>
+                    <p>営業時間: 10:00〜20:00（月曜定休）</p>
+                </div>
+                <div class="footer-nav">
+                    <ul>
+                        <li><a href="index.html">ホーム</a></li>
+                        <li><a href="about.html">サロンについて</a></li>
+                        <li><a href="services.html">メニュー・料金</a></li>
+                        <li><a href="works.html">スタイルギャラリー</a></li>
+                        <li><a href="staff.html">スタッフ紹介</a></li>
+                        <li><a href="campaign.html">キャンペーン</a></li>
+                        <li><a href="company.html">アクセス・予約</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="copyright">© 2024 サロン未来. All Rights Reserved.</p>
+            <p class="text-center" style="margin-top: 10px;"><a href="company.html#privacy">プライバシーポリシー</a></p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // タブ切り替え機能
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.dataset.tab;
+
+                    // アクティブクラスの切り替え
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    this.classList.add('active');
+                    document.getElementById(targetTab).classList.add('active');
+                });
+            });
+
+            // ニュースレター登録フォーム
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input[type="email"]').value;
+                    alert('ありがとうございます！メールアドレス「' + email + '」で登録いたします。');
+                    this.reset();
+                });
+            }
+
+            // Instagram投稿のクリックイベント
+            const instagramPosts = document.querySelectorAll('.instagram-post');
+            instagramPosts.forEach(post => {
+                post.addEventListener('click', function() {
+                    // 実際のInstagram投稿へのリンクを設定
+                    window.open('#', '_blank');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
