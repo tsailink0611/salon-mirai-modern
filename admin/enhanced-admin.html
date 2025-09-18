@@ -6,7 +6,6 @@
     <title>サロン未来 - 管理画面（改良版）</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="enhanced-forms.css">
     <style>
         * {
             margin: 0;
@@ -396,6 +395,74 @@
             color: #666;
             font-weight: 500;
         }
+
+        /* 画像アップロード機能のスタイル */
+        .file-upload-container {
+            margin-bottom: 15px;
+        }
+
+        .file-upload-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #B8860B, #DAA520);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .file-upload-btn:hover {
+            background: linear-gradient(135deg, #DAA520, #B8860B);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+        }
+
+        .image-preview {
+            margin-top: 10px;
+            padding: 10px;
+            border: 2px dashed #ddd;
+            border-radius: 8px;
+            text-align: center;
+            min-height: 60px;
+            background: #fafafa;
+        }
+
+        .image-preview-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .image-preview img {
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-preview img:hover {
+            transform: scale(1.05);
+        }
+
+        /* フォームの改善 */
+        .help-text {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .help-icon {
+            display: inline-block;
+            margin-left: 5px;
+            color: #B8860B;
+            cursor: help;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -727,8 +794,6 @@
     <div id="notification" class="notification"></div>
 
     <!-- スクリプト -->
-    <script src="admin.js"></script>
-    <script src="image-upload.js"></script>
     <script>
         // 管理システム基本機能
         let currentData = null;
@@ -1150,6 +1215,78 @@
             setTimeout(() => {
                 notification.classList.remove('show');
             }, 3000);
+        }
+
+        // 画像アップロード機能
+        function handleImageUpload(input, previewId) {
+            const file = input.files[0];
+            const previewDiv = document.getElementById(previewId);
+            const hiddenInput = input.parentElement.querySelector('input[type="hidden"]');
+
+            if (!file) {
+                previewDiv.innerHTML = '';
+                if (hiddenInput) hiddenInput.value = '';
+                return;
+            }
+
+            // ファイルサイズチェック (2MB制限)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('⚠️ ファイルサイズが大きすぎます。2MB以下の画像を選択してください。');
+                input.value = '';
+                return;
+            }
+
+            // ファイル形式チェック
+            if (!file.type.startsWith('image/')) {
+                alert('⚠️ 画像ファイルを選択してください。');
+                input.value = '';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // プレビュー表示
+                previewDiv.innerHTML = `
+                    <div class="image-preview-container">
+                        <img src="${e.target.result}" alt="プレビュー" style="max-width: 200px; max-height: 150px; border-radius: 8px; border: 2px solid #ddd;">
+                        <p style="margin-top: 5px; font-size: 12px; color: #666;">
+                            📁 ${file.name} (${(file.size / 1024).toFixed(1)}KB)
+                        </p>
+                        <button type="button" onclick="removeImagePreview('${previewId}', '${input.id}')"
+                                style="margin-top: 5px; padding: 4px 8px; background: #dc3545; color: white; border: none; border-radius: 4px; font-size: 12px; cursor: pointer;">
+                            🗑️ 削除
+                        </button>
+                    </div>
+                `;
+
+                // Base64データを隠しフィールドに保存
+                if (hiddenInput) {
+                    hiddenInput.value = e.target.result;
+                }
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        // 画像プレビュー削除
+        function removeImagePreview(previewId, inputId) {
+            document.getElementById(previewId).innerHTML = '';
+            document.getElementById(inputId).value = '';
+            const hiddenInput = document.getElementById(inputId).parentElement.querySelector('input[type="hidden"]');
+            if (hiddenInput) hiddenInput.value = '';
+        }
+
+        // 画像URL生成 (Base64またはパス)
+        function getImageUrl(imageData) {
+            if (!imageData) return 'images/default-placeholder.jpg';
+
+            // Base64データの場合
+            if (imageData.startsWith('data:image/')) {
+                return imageData;
+            }
+
+            // パスの場合
+            return imageData;
         }
 
         // モーダル外クリックで閉じる
