@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サロン未来 - 管理画面（改良版）</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="enhanced-forms.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        /* ログイン画面 */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #B8860B, #E8B4B8);
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo h1 {
+            color: #B8860B;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #B8860B;
+            box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #B8860B, #DAA520);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, #DAA520, #B8860B);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+        }
+
+        /* 管理画面のメインスタイル */
+        .admin-container {
+            display: none;
+            min-height: 100vh;
+            flex-direction: row;
+        }
+
+        .admin-sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, #2c3e50, #34495e);
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid #34495e;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+        }
+
+        .menu-items {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .menu-item {
+            display: block;
+            padding: 15px 25px;
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border-left: 4px solid transparent;
+        }
+
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #B8860B;
+        }
+
+        .main-content {
+            margin-left: 280px;
+            padding: 30px;
+            width: calc(100% - 280px);
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            padding: 20px 30px;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #B8860B, #DAA520);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #DAA520, #B8860B);
+            transform: translateY(-1px);
+        }
+
+        /* モーダル */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-header {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #B8860B, #DAA520);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .close {
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        /* テーブル */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 12px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .btn-edit {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .admin-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                width: 95%;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+        }
+
+        /* 通知 */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            z-index: 2000;
+            transform: translateX(400px);
+            transition: transform 0.3s ease;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .notification.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* 統計カード */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #B8860B;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- ログイン画面 -->
+    <div id="login-container" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>🏪 サロン未来</h1>
+                <p>管理画面へログイン（改良版）</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" class="form-control" value="salon_admin" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" class="form-control" value="salon2024" required>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-sign-in-alt"></i> ログイン
+                </button>
+            </form>
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem; color: #666;">
+                <strong>📋 改良版の新機能:</strong><br>
+                ✅ 画像ファイルアップロード対応<br>
+                ✅ フォーム項目の説明・例文追加<br>
+                ✅ プレビュー機能<br>
+                ✅ バリデーション強化<br><br>
+                <strong>ログイン情報:</strong><br>
+                ユーザー名: salon_admin<br>
+                パスワード: salon2024
+            </div>
+        </div>
+    </div>
+
+    <!-- メイン管理画面 -->
+    <div id="admin-container" class="admin-container">
+        <!-- サイドバー -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🏪 サロン未来</h2>
+                <p>管理システム</p>
+            </div>
+            <ul class="menu-items">
+                <li class="menu-item active" data-section="dashboard">
+                    <i class="fas fa-chart-bar"></i> ダッシュボード
+                </li>
+                <li class="menu-item" data-section="campaigns">
+                    <i class="fas fa-bullhorn"></i> キャンペーン管理
+                </li>
+                <li class="menu-item" data-section="staff">
+                    <i class="fas fa-users"></i> スタッフ管理
+                </li>
+                <li class="menu-item" data-section="news">
+                    <i class="fas fa-newspaper"></i> お知らせ管理
+                </li>
+                <li class="menu-item" data-section="services">
+                    <i class="fas fa-cut"></i> サービス管理
+                </li>
+                <li class="menu-item" data-section="settings">
+                    <i class="fas fa-cog"></i> サイト設定
+                </li>
+                <li class="menu-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> ログアウト
+                </li>
+            </ul>
+        </nav>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <!-- ダッシュボード -->
+            <section id="dashboard" class="section active">
+                <div class="page-header">
+                    <h1 class="page-title">📊 ダッシュボード</h1>
+                    <p>サロン未来の管理状況を確認できます</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="stats-campaigns">0</div>
+                        <div class="stat-label">アクティブキャンペーン</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stats-staff">0</div>
+                        <div class="stat-label">登録スタッフ数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stats-services">0</div>
+                        <div class="stat-label">提供サービス数</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="stats-news">0</div>
+                        <div class="stat-label">お知らせ件数</div>
+                    </div>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>🚀 改良版の新機能</h3>
+                    </div>
+                    <div class="card-body">
+                        <div style="display: grid; gap: 15px;">
+                            <div style="padding: 15px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #2196f3;">
+                                <strong>📸 画像アップロード機能</strong><br>
+                                ローカルファイルから直接画像を選択してアップロード可能
+                            </div>
+                            <div style="padding: 15px; background: #f3e5f5; border-radius: 8px; border-left: 4px solid #9c27b0;">
+                                <strong>📝 フォーム項目ガイド</strong><br>
+                                各入力欄に説明文と例文を表示
+                            </div>
+                            <div style="padding: 15px; background: #e8f5e8; border-radius: 8px; border-left: 4px solid #4caf50;">
+                                <strong>👁️ プレビュー機能</strong><br>
+                                画像選択時に即座にプレビュー表示
+                            </div>
+                            <div style="padding: 15px; background: #fff3e0; border-radius: 8px; border-left: 4px solid #ff9800;">
+                                <strong>✅ バリデーション強化</strong><br>
+                                ファイルサイズ・形式チェック、必須項目の検証
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- キャンペーン管理 -->
+            <section id="campaigns" class="section">
+                <div class="page-header">
+                    <h1 class="page-title">📢 キャンペーン管理</h1>
+                    <p>キャンペーン情報の追加・編集・削除ができます</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>キャンペーン一覧</h3>
+                        <button class="btn-primary" onclick="openCampaignModal()">
+                            <i class="fas fa-plus"></i> 新規キャンペーン
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="campaigns-list">
+                            <p>キャンペーンを読み込み中...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- スタッフ管理 -->
+            <section id="staff" class="section">
+                <div class="page-header">
+                    <h1 class="page-title">👥 スタッフ管理</h1>
+                    <p>スタッフ情報の追加・編集・削除ができます</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>スタッフ一覧</h3>
+                        <button class="btn-primary" onclick="openStaffModal()">
+                            <i class="fas fa-plus"></i> 新規スタッフ
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="staff-list">
+                            <p>スタッフ情報を読み込み中...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- その他のセクションも同様に実装 -->
+        </main>
+    </div>
+
+    <!-- モーダル: キャンペーン -->
+    <div id="campaign-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="campaign-modal-title">新規キャンペーン</h4>
+                <span class="close" onclick="closeCampaignModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="campaign-form">
+                    <div class="form-group">
+                        <label>キャンペーンタイトル <i class="fas fa-question-circle help-icon"></i></label>
+                        <input type="text" id="campaign-title" class="form-control" placeholder="例：秋冬限定カラーキャンペーン" required>
+                        <div class="help-text">お客様の目を引く魅力的なタイトルを入力してください</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>キャンペーン期間 <i class="fas fa-question-circle help-icon"></i></label>
+                        <input type="text" id="campaign-period" class="form-control" placeholder="例：2024年10月1日〜12月31日" required>
+                        <div class="help-text">キャンペーンの開始日と終了日を入力してください</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>説明 <i class="fas fa-question-circle help-icon"></i></label>
+                        <textarea id="campaign-description" class="form-control" rows="4" placeholder="キャンペーンの詳細内容を説明してください" required></textarea>
+                        <div class="help-text">キャンペーンの魅力やメリットを詳しく説明してください</div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>通常価格 <i class="fas fa-question-circle help-icon"></i></label>
+                            <input type="number" id="campaign-original-price" class="form-control" placeholder="例：8500" required>
+                            <div class="help-text">通常の料金を数字のみで入力してください</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>特別価格 <i class="fas fa-question-circle help-icon"></i></label>
+                            <input type="number" id="campaign-sale-price" class="form-control" placeholder="例：6800" required>
+                            <div class="help-text">キャンペーン価格を数字のみで入力してください</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>バッジ <i class="fas fa-question-circle help-icon"></i></label>
+                        <input type="text" id="campaign-badge" class="form-control" placeholder="例：🔥人気、✨新規、💎限定">
+                        <div class="help-text">キャンペーンに表示するバッジテキスト（絵文字も使用可能）</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>キャンペーン画像 <i class="fas fa-question-circle help-icon"></i></label>
+                        <div class="file-upload-container">
+                            <input type="file" id="campaign-image-file" accept="image/*" onchange="handleImageUpload(this, 'campaign-image-preview')" style="display: none;">
+                            <button type="button" onclick="document.getElementById('campaign-image-file').click()" class="file-upload-btn">
+                                📸 画像を選択（2MB以下）
+                            </button>
+                            <div id="campaign-image-preview" class="image-preview"></div>
+                            <input type="hidden" id="campaign-image" name="campaign-image">
+                        </div>
+                        <div class="help-text">キャンペーンのイメージ画像をアップロードしてください（JPG, PNG形式、2MB以下）</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>タグ <i class="fas fa-question-circle help-icon"></i></label>
+                        <input type="text" id="campaign-tags" class="form-control" placeholder="例：カラー,パーマ,初回限定">
+                        <div class="help-text">検索用のタグをカンマ区切りで入力してください</div>
+                    </div>
+
+                    <div style="display: flex; gap: 10px; align-items: center; margin-top: 20px;">
+                        <label>
+                            <input type="checkbox" id="campaign-featured"> 注目キャンペーン
+                        </label>
+                        <label>
+                            <input type="checkbox" id="campaign-active" checked> アクティブ
+                        </label>
+                    </div>
+
+                    <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: flex-end;">
+                        <button type="button" class="btn btn-secondary" onclick="closeCampaignModal()">キャンセル</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- モーダル: スタッフ -->
+    <div id="staff-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="staff-modal-title">新規スタッフ</h4>
+                <span class="close" onclick="closeStaffModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="staff-form">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>スタッフ名 <i class="fas fa-question-circle help-icon"></i></label>
+                            <input type="text" id="staff-name" class="form-control" placeholder="例：田中美穂" required>
+                            <div class="help-text">スタッフの氏名を入力してください</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>役職 <i class="fas fa-question-circle help-icon"></i></label>
+                            <input type="text" id="staff-role" class="form-control" placeholder="例：代表スタイリスト" required>
+                            <div class="help-text">役職や肩書きを入力してください</div>
+                        </div>
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>経験年数 <i class="fas fa-question-circle help-icon"></i></label>
+                            <input type="number" id="staff-experience" class="form-control" placeholder="例：10" required>
+                            <div class="help-text">美容師としての経験年数を数字で入力してください</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>評価 <i class="fas fa-question-circle help-icon"></i></label>
+                            <input type="number" id="staff-rating" class="form-control" step="0.1" min="1" max="5" placeholder="例：4.8" required>
+                            <div class="help-text">顧客評価を1.0〜5.0の範囲で入力してください</div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>専門分野 <i class="fas fa-question-circle help-icon"></i></label>
+                        <input type="text" id="staff-specialties" class="form-control" placeholder="例：カット,カラー,パーマ">
+                        <div class="help-text">得意な技術やサービスをカンマ区切りで入力してください</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>スタッフ写真 <i class="fas fa-question-circle help-icon"></i></label>
+                        <div class="file-upload-container">
+                            <input type="file" id="staff-image-file" accept="image/*" onchange="handleImageUpload(this, 'staff-image-preview')" style="display: none;">
+                            <button type="button" onclick="document.getElementById('staff-image-file').click()" class="file-upload-btn">
+                                📸 写真を選択（2MB以下）
+                            </button>
+                            <div id="staff-image-preview" class="image-preview"></div>
+                            <input type="hidden" id="staff-image" name="staff-image">
+                        </div>
+                        <div class="help-text">スタッフの写真をアップロードしてください（JPG, PNG形式、2MB以下）</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>プロフィール <i class="fas fa-question-circle help-icon"></i></label>
+                        <textarea id="staff-bio" class="form-control" rows="4" placeholder="スタッフの経歴や人柄、お客様へのメッセージなど"></textarea>
+                        <div class="help-text">スタッフの紹介文を入力してください</div>
+                    </div>
+
+                    <div style="margin-top: 30px; display: flex; gap: 10px; justify-content: flex-end;">
+                        <button type="button" class="btn btn-secondary" onclick="closeStaffModal()">キャンセル</button>
+                        <button type="submit" class="btn btn-primary">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知 -->
+    <div id="notification" class="notification"></div>
+
+    <!-- スクリプト -->
+    <script src="admin.js"></script>
+    <script src="image-upload.js"></script>
+    <script>
+        // 管理システム基本機能
+        let currentData = null;
+        let isAuthenticated = false;
+        let currentUser = null;
+
+        // 認証情報
+        const validCredentials = {
+            'salon_admin': 'salon2024'
+        };
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeEnhancedAdmin();
+        });
+
+        function initializeEnhancedAdmin() {
+            checkAuthentication();
+            setupEventListeners();
+            loadData();
+        }
+
+        function checkAuthentication() {
+            const authData = localStorage.getItem('salon_auth');
+            if (authData) {
+                try {
+                    const auth = JSON.parse(authData);
+                    if (auth.expiry > Date.now()) {
+                        isAuthenticated = true;
+                        currentUser = auth.username;
+                        showDashboard();
+                        return;
+                    }
+                } catch (error) {
+                    console.error('Auth check error:', error);
+                }
+            }
+            showLogin();
+        }
+
+        function setupEventListeners() {
+            // ログインフォーム
+            document.getElementById('login-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                login();
+            });
+
+            // メニューナビゲーション
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const section = this.dataset.section;
+                    if (section) {
+                        showSection(section);
+                    }
+                });
+            });
+
+            // キャンペーンフォーム
+            document.getElementById('campaign-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveCampaign();
+            });
+
+            // スタッフフォーム
+            document.getElementById('staff-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveStaff();
+            });
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (validCredentials[username] === password) {
+                const authData = {
+                    username: username,
+                    expiry: Date.now() + (24 * 60 * 60 * 1000) // 24時間
+                };
+                localStorage.setItem('salon_auth', JSON.stringify(authData));
+
+                isAuthenticated = true;
+                currentUser = username;
+                showDashboard();
+                showNotification('ログインしました', 'success');
+            } else {
+                showNotification('ユーザー名またはパスワードが正しくありません', 'error');
+            }
+        }
+
+        function logout() {
+            localStorage.removeItem('salon_auth');
+            isAuthenticated = false;
+            currentUser = null;
+            showLogin();
+            showNotification('ログアウトしました', 'success');
+        }
+
+        function showLogin() {
+            document.getElementById('login-container').style.display = 'flex';
+            document.getElementById('admin-container').style.display = 'none';
+        }
+
+        function showDashboard() {
+            document.getElementById('login-container').style.display = 'none';
+            document.getElementById('admin-container').style.display = 'flex';
+            updateDashboardStats();
+        }
+
+        function showSection(sectionName) {
+            // すべてのセクションを非表示
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // メニューアイテムのアクティブ状態更新
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            // 選択されたセクションを表示
+            const targetSection = document.getElementById(sectionName);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // 対応するメニューアイテムをアクティブに
+            const targetMenuItem = document.querySelector(`[data-section="${sectionName}"]`);
+            if (targetMenuItem) {
+                targetMenuItem.classList.add('active');
+            }
+
+            // セクション固有の処理
+            if (sectionName === 'campaigns') {
+                renderCampaigns();
+            } else if (sectionName === 'staff') {
+                renderStaff();
+            }
+        }
+
+        function loadData() {
+            try {
+                const savedData = localStorage.getItem('salon_data_backup');
+                if (savedData) {
+                    currentData = JSON.parse(savedData);
+                } else {
+                    currentData = getDefaultData();
+                }
+                updateDashboardStats();
+            } catch (error) {
+                console.error('データ読み込みエラー:', error);
+                currentData = getDefaultData();
+            }
+        }
+
+        function getDefaultData() {
+            return {
+                campaigns: [],
+                staff: [],
+                news: [],
+                services: [],
+                settings: {
+                    siteName: "サロン未来",
+                    lastUpdated: new Date().toISOString()
+                }
+            };
+        }
+
+        function updateDashboardStats() {
+            if (!currentData) return;
+
+            document.getElementById('stats-campaigns').textContent =
+                currentData.campaigns?.filter(c => c.active).length || 0;
+            document.getElementById('stats-staff').textContent =
+                currentData.staff?.length || 0;
+            document.getElementById('stats-services').textContent =
+                currentData.services?.length || 0;
+            document.getElementById('stats-news').textContent =
+                currentData.news?.length || 0;
+        }
+
+        // キャンペーン関連
+        function openCampaignModal(campaignId = null) {
+            const modal = document.getElementById('campaign-modal');
+            const title = document.getElementById('campaign-modal-title');
+
+            if (campaignId) {
+                title.textContent = 'キャンペーン編集';
+                // 編集データを読み込み
+                const campaign = currentData.campaigns.find(c => c.id === campaignId);
+                if (campaign) {
+                    document.getElementById('campaign-title').value = campaign.title || '';
+                    document.getElementById('campaign-period').value = campaign.period || '';
+                    document.getElementById('campaign-description').value = campaign.description || '';
+                    document.getElementById('campaign-original-price').value = campaign.originalPrice || '';
+                    document.getElementById('campaign-sale-price').value = campaign.salePrice || '';
+                    document.getElementById('campaign-badge').value = campaign.badge || '';
+                    document.getElementById('campaign-tags').value = campaign.tags || '';
+                    document.getElementById('campaign-featured').checked = campaign.featured || false;
+                    document.getElementById('campaign-active').checked = campaign.active !== false;
+
+                    // 画像プレビュー
+                    if (campaign.image) {
+                        document.getElementById('campaign-image-preview').innerHTML = `
+                            <div class="image-preview-container">
+                                <img src="${getImageUrl(campaign.image)}" alt="現在の画像" style="max-width: 200px; max-height: 150px; border-radius: 8px;">
+                                <p style="margin-top: 5px; font-size: 12px; color: #666;">現在の画像</p>
+                            </div>
+                        `;
+                        document.getElementById('campaign-image').value = campaign.image;
+                    }
+                }
+            } else {
+                title.textContent = '新規キャンペーン';
+                document.getElementById('campaign-form').reset();
+                document.getElementById('campaign-image-preview').innerHTML = '';
+                document.getElementById('campaign-active').checked = true;
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeCampaignModal() {
+            document.getElementById('campaign-modal').style.display = 'none';
+        }
+
+        function saveCampaign() {
+            // フォームデータ取得
+            const formData = {
+                title: document.getElementById('campaign-title').value,
+                period: document.getElementById('campaign-period').value,
+                description: document.getElementById('campaign-description').value,
+                originalPrice: parseInt(document.getElementById('campaign-original-price').value),
+                salePrice: parseInt(document.getElementById('campaign-sale-price').value),
+                badge: document.getElementById('campaign-badge').value,
+                image: document.getElementById('campaign-image').value,
+                tags: document.getElementById('campaign-tags').value,
+                featured: document.getElementById('campaign-featured').checked,
+                active: document.getElementById('campaign-active').checked
+            };
+
+            // バリデーション
+            if (!formData.title || !formData.period || !formData.description) {
+                showNotification('必須項目を入力してください', 'error');
+                return;
+            }
+
+            // データ保存
+            if (!currentData.campaigns) currentData.campaigns = [];
+
+            formData.id = Date.now(); // 新規の場合
+            currentData.campaigns.push(formData);
+
+            localStorage.setItem('salon_data_backup', JSON.stringify(currentData));
+
+            closeCampaignModal();
+            renderCampaigns();
+            updateDashboardStats();
+            showNotification('キャンペーンを保存しました', 'success');
+        }
+
+        function renderCampaigns() {
+            const container = document.getElementById('campaigns-list');
+            if (!currentData.campaigns || currentData.campaigns.length === 0) {
+                container.innerHTML = '<p>キャンペーンが登録されていません。</p>';
+                return;
+            }
+
+            const html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>画像</th>
+                            <th>タイトル</th>
+                            <th>期間</th>
+                            <th>価格</th>
+                            <th>ステータス</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${currentData.campaigns.map(campaign => `
+                            <tr>
+                                <td>
+                                    ${campaign.image ?
+                                        `<img src="${getImageUrl(campaign.image)}" alt="${campaign.title}" style="width: 50px; height: 40px; object-fit: cover; border-radius: 4px;">` :
+                                        '📷'
+                                    }
+                                </td>
+                                <td><strong>${campaign.title}</strong></td>
+                                <td>${campaign.period}</td>
+                                <td>
+                                    <span style="text-decoration: line-through; color: #999;">¥${campaign.originalPrice?.toLocaleString()}</span><br>
+                                    <strong style="color: #e74c3c;">¥${campaign.salePrice?.toLocaleString()}</strong>
+                                </td>
+                                <td>
+                                    <span class="status-badge ${campaign.active ? 'status-active' : 'status-inactive'}">
+                                        ${campaign.active ? 'アクティブ' : '非アクティブ'}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-sm btn-edit" onclick="openCampaignModal(${campaign.id})">編集</button>
+                                        <button class="btn-sm btn-delete" onclick="deleteCampaign(${campaign.id})">削除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = html;
+        }
+
+        // スタッフ関連
+        function openStaffModal(staffId = null) {
+            const modal = document.getElementById('staff-modal');
+            const title = document.getElementById('staff-modal-title');
+
+            if (staffId) {
+                title.textContent = 'スタッフ編集';
+                // 編集データを読み込み
+            } else {
+                title.textContent = '新規スタッフ';
+                document.getElementById('staff-form').reset();
+                document.getElementById('staff-image-preview').innerHTML = '';
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeStaffModal() {
+            document.getElementById('staff-modal').style.display = 'none';
+        }
+
+        function saveStaff() {
+            // スタッフ保存処理
+            const formData = {
+                name: document.getElementById('staff-name').value,
+                role: document.getElementById('staff-role').value,
+                experience: document.getElementById('staff-experience').value,
+                rating: parseFloat(document.getElementById('staff-rating').value),
+                specialties: document.getElementById('staff-specialties').value,
+                photo: document.getElementById('staff-image').value,
+                bio: document.getElementById('staff-bio').value
+            };
+
+            if (!formData.name || !formData.role) {
+                showNotification('必須項目を入力してください', 'error');
+                return;
+            }
+
+            if (!currentData.staff) currentData.staff = [];
+
+            formData.id = Date.now();
+            currentData.staff.push(formData);
+
+            localStorage.setItem('salon_data_backup', JSON.stringify(currentData));
+
+            closeStaffModal();
+            renderStaff();
+            updateDashboardStats();
+            showNotification('スタッフを保存しました', 'success');
+        }
+
+        function renderStaff() {
+            const container = document.getElementById('staff-list');
+            if (!currentData.staff || currentData.staff.length === 0) {
+                container.innerHTML = '<p>スタッフが登録されていません。</p>';
+                return;
+            }
+
+            const html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>写真</th>
+                            <th>名前</th>
+                            <th>役職</th>
+                            <th>経験</th>
+                            <th>評価</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${currentData.staff.map(staff => `
+                            <tr>
+                                <td>
+                                    ${staff.photo ?
+                                        `<img src="${getImageUrl(staff.photo)}" alt="${staff.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">` :
+                                        '👤'
+                                    }
+                                </td>
+                                <td><strong>${staff.name}</strong></td>
+                                <td>${staff.role}</td>
+                                <td>${staff.experience}年</td>
+                                <td>⭐ ${staff.rating}</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-sm btn-edit" onclick="openStaffModal(${staff.id})">編集</button>
+                                        <button class="btn-sm btn-delete" onclick="deleteStaff(${staff.id})">削除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = html;
+        }
+
+        // 通知表示
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${type} show`;
+
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        // モーダル外クリックで閉じる
+        window.onclick = function(event) {
+            const campaignModal = document.getElementById('campaign-modal');
+            const staffModal = document.getElementById('staff-modal');
+
+            if (event.target === campaignModal) {
+                closeCampaignModal();
+            }
+            if (event.target === staffModal) {
+                closeStaffModal();
+            }
+        }
+    </script>
+</body>
+</html>
