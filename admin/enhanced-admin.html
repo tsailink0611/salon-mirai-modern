@@ -631,7 +631,95 @@
                 </div>
             </section>
 
-            <!-- その他のセクションも同様に実装 -->
+            <!-- お知らせ管理 -->
+            <section id="news" class="section">
+                <div class="page-header">
+                    <h1 class="page-title">📰 お知らせ管理</h1>
+                    <p>お知らせの追加・編集・削除ができます</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>お知らせ一覧</h3>
+                        <button class="btn-primary" onclick="openNewsModal()">
+                            <i class="fas fa-plus"></i> 新規お知らせ
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="news-list">
+                            <p>お知らせを読み込み中...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- サービス管理 -->
+            <section id="services" class="section">
+                <div class="page-header">
+                    <h1 class="page-title">✂️ サービス管理</h1>
+                    <p>サービス・料金情報の追加・編集・削除ができます</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>サービス一覧</h3>
+                        <button class="btn-primary" onclick="openServiceModal()">
+                            <i class="fas fa-plus"></i> 新規サービス
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <div id="services-list">
+                            <p>サービス情報を読み込み中...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- サイト設定 -->
+            <section id="settings" class="section">
+                <div class="page-header">
+                    <h1 class="page-title">⚙️ サイト設定</h1>
+                    <p>サイト全体の設定を管理できます</p>
+                </div>
+
+                <div class="content-card">
+                    <div class="card-header">
+                        <h3>基本設定</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="settings-form">
+                            <div class="form-group">
+                                <label>サイト名</label>
+                                <input type="text" id="site-name" class="form-control" placeholder="サロン未来">
+                            </div>
+
+                            <div class="form-group">
+                                <label>電話番号</label>
+                                <input type="text" id="site-phone" class="form-control" placeholder="03-5678-9012">
+                            </div>
+
+                            <div class="form-group">
+                                <label>住所</label>
+                                <input type="text" id="site-address" class="form-control" placeholder="〒123-4567 東京都未来区美容町1-2-3">
+                            </div>
+
+                            <div class="form-group">
+                                <label>営業時間</label>
+                                <input type="text" id="site-hours" class="form-control" placeholder="10:00〜20:00（月曜定休）">
+                            </div>
+
+                            <div class="form-group">
+                                <label>メールアドレス</label>
+                                <input type="email" id="site-email" class="form-control" placeholder="info@salon-mirai.com">
+                            </div>
+
+                            <div style="margin-top: 30px;">
+                                <button type="submit" class="btn-primary">設定を保存</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
         </main>
     </div>
 
@@ -932,6 +1020,12 @@
                 renderCampaigns();
             } else if (sectionName === 'staff') {
                 renderStaff();
+            } else if (sectionName === 'news') {
+                renderNews();
+            } else if (sectionName === 'services') {
+                renderServices();
+            } else if (sectionName === 'settings') {
+                loadSettings();
             }
         }
 
@@ -1204,6 +1298,105 @@
                 </table>
             `;
             container.innerHTML = html;
+        }
+
+        // お知らせ関連
+        function openNewsModal() {
+            showNotification('お知らせ管理機能は開発中です', 'info');
+        }
+
+        function renderNews() {
+            const container = document.getElementById('news-list');
+            if (!currentData.news || currentData.news.length === 0) {
+                container.innerHTML = '<p>お知らせが登録されていません。</p>';
+                return;
+            }
+
+            const html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>タイトル</th>
+                            <th>公開日</th>
+                            <th>重要度</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${currentData.news.map(news => `
+                            <tr>
+                                <td><strong>${news.title}</strong></td>
+                                <td>${new Date(news.publishedAt).toLocaleDateString()}</td>
+                                <td>
+                                    <span class="status-badge ${news.featured ? 'status-active' : 'status-inactive'}">
+                                        ${news.featured ? '重要' : '通常'}
+                                    </span>
+                                </td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-sm btn-edit">編集</button>
+                                        <button class="btn-sm btn-delete">削除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = html;
+        }
+
+        // サービス関連
+        function openServiceModal() {
+            showNotification('サービス管理機能は開発中です', 'info');
+        }
+
+        function renderServices() {
+            const container = document.getElementById('services-list');
+            if (!currentData.services || currentData.services.length === 0) {
+                container.innerHTML = '<p>サービスが登録されていません。</p>';
+                return;
+            }
+
+            const html = `
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>カテゴリ</th>
+                            <th>サービス名</th>
+                            <th>料金</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${currentData.services.map(service => `
+                            <tr>
+                                <td>${service.category}</td>
+                                <td><strong>${service.name}</strong></td>
+                                <td>¥${service.price?.toLocaleString()}${service.priceNote || ''}</td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-sm btn-edit">編集</button>
+                                        <button class="btn-sm btn-delete">削除</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `;
+            container.innerHTML = html;
+        }
+
+        // サイト設定関連
+        function loadSettings() {
+            if (currentData.settings) {
+                document.getElementById('site-name').value = currentData.settings.siteName || '';
+                document.getElementById('site-phone').value = currentData.settings.contact?.phone || '';
+                document.getElementById('site-address').value = currentData.settings.contact?.address || '';
+                document.getElementById('site-hours').value = currentData.settings.contact?.hours || '';
+                document.getElementById('site-email').value = currentData.settings.contact?.email || '';
+            }
         }
 
         // 通知表示
