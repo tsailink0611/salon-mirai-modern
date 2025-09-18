@@ -1,0 +1,9 @@
+setup.bat
+exclude.txt
+.git
+.gitignore
+node_modules
+README_制作会社向け.md
+salon-projects
+*.backup
+*.tmp

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>データ連携テスト - サロン未来</title>
+    <style>
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif;
+            margin: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .section h2 {
+            color: #B8860B;
+            margin-top: 0;
+        }
+        .debug-info {
+            background: #f0f0f0;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .campaign-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #fafafa;
+        }
+        .campaign-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .price-display {
+            margin: 10px 0;
+        }
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+            margin-right: 10px;
+        }
+        .sale-price {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+        .discount {
+            background: #e74c3c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+        .btn {
+            background: #B8860B;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+        }
+        .btn:hover {
+            background: #996f09;
+        }
+        .status {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin: 5px;
+            display: inline-block;
+        }
+        .status.success {
+            background: #2ecc71;
+            color: white;
+        }
+        .status.error {
+            background: #e74c3c;
+            color: white;
+        }
+        .status.warning {
+            background: #f39c12;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 データ連携テスト</h1>
+        <p>管理画面とホームページのデータ連携をテストします。</p>
+
+        <div class="section">
+            <h2>📊 LocalStorage データ確認</h2>
+            <button class="btn" onclick="checkLocalStorage()">LocalStorageをチェック</button>
+            <div id="localStorage-status" class="debug-info"></div>
+        </div>
+
+        <div class="section">
+            <h2>🔄 管理画面連携テスト</h2>
+            <button class="btn" onclick="loadAdminData()">管理画面データを読み込み</button>
+            <button class="btn" onclick="testIntegration()">連携機能をテスト</button>
+            <div id="admin-data-status" class="debug-info"></div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 キャンペーン表示テスト</h2>
+            <div id="campaign-display"></div>
+        </div>
+
+        <div class="section">
+            <h2>📝 お知らせ表示テスト</h2>
+            <div id="news-display"></div>
+        </div>
+
+        <div class="section">
+            <h2>👥 スタッフ表示テスト</h2>
+            <div id="staff-display"></div>
+        </div>
+
+        <div class="section">
+            <h2>🔗 リンクテスト</h2>
+            <a href="admin/index.html" class="btn">管理画面を開く</a>
+            <a href="campaign.html" class="btn">キャンペーンページを開く</a>
+            <a href="index.html" class="btn">ホームページを開く</a>
+        </div>
+    </div>
+
+    <!-- 管理画面連携スクリプト -->
+    <script src="js/admin-integration-complete.js"></script>
+
+    <script>
+        function checkLocalStorage() {
+            const statusDiv = document.getElementById('localStorage-status');
+
+            try {
+                const salonData = localStorage.getItem('salon_data_backup');
+                const authData = localStorage.getItem('salon_auth');
+
+                let status = '📋 LocalStorage チェック結果:\n\n';
+
+                if (salonData) {
+                    const data = JSON.parse(salonData);
+                    status += `✅ salon_data_backup: 存在\n`;
+                    status += `  - キャンペーン: ${data.campaigns?.length || 0}件\n`;
+                    status += `  - お知らせ: ${data.news?.length || 0}件\n`;
+                    status += `  - スタッフ: ${data.staff?.length || 0}件\n`;
+                    status += `  - サービス: ${data.services?.length || 0}件\n`;
+                    status += `  - 最終更新: ${data.settings?.lastUpdated || '不明'}\n\n`;
+                } else {
+                    status += `❌ salon_data_backup: 存在しません\n\n`;
+                }
+
+                if (authData) {
+                    const auth = JSON.parse(authData);
+                    status += `✅ salon_auth: 存在\n`;
+                    status += `  - ユーザー: ${auth.username}\n`;
+                    status += `  - 有効期限: ${new Date(auth.expiry).toLocaleString()}\n`;
+                } else {
+                    status += `❌ salon_auth: 存在しません\n`;
+                }
+
+                statusDiv.textContent = status;
+                statusDiv.className = 'debug-info';
+
+            } catch (error) {
+                statusDiv.textContent = `❌ エラー: ${error.message}`;
+                statusDiv.className = 'debug-info';
+            }
+        }
+
+        function testIntegration() {
+            const statusDiv = document.getElementById('admin-data-status');
+
+            try {
+                statusDiv.textContent = '🔄 連携機能をテスト中...\n';
+
+                // 管理画面データの読み込みテスト
+                const adminData = window.SalonIntegration ? window.SalonIntegration.loadAdminData() : null;
+
+                if (adminData) {
+                    statusDiv.textContent += `✅ SalonIntegration.loadAdminData(): 成功\n`;
+                    statusDiv.textContent += `  - データ形式: ${typeof adminData}\n`;
+                    statusDiv.textContent += `  - キャンペーン: ${adminData.campaigns?.length || 0}件\n`;
+
+                    // キャンペーン更新テスト
+                    if (window.SalonIntegration.updateCampaignPage) {
+                        window.SalonIntegration.updateCampaignPage();
+                        statusDiv.textContent += `✅ updateCampaignPage(): 実行完了\n`;
+                    }
+
+                    // お知らせ更新テスト
+                    if (window.SalonIntegration.updateNewsSection) {
+                        window.SalonIntegration.updateNewsSection();
+                        statusDiv.textContent += `✅ updateNewsSection(): 実行完了\n`;
+                    }
+
+                    // スタッフ更新テスト
+                    if (window.SalonIntegration.updateStaffPage) {
+                        window.SalonIntegration.updateStaffPage();
+                        statusDiv.textContent += `✅ updateStaffPage(): 実行完了\n`;
+                    }
+
+                    displayTestData(adminData);
+
+                } else {
+                    statusDiv.textContent += `❌ SalonIntegration.loadAdminData(): データが取得できません\n`;
+                }
+
+            } catch (error) {
+                statusDiv.textContent = `❌ エラー: ${error.message}\n`;
+                console.error('Integration test error:', error);
+            }
+        }
+
+        function displayTestData(data) {
+            // キャンペーン表示
+            const campaignDiv = document.getElementById('campaign-display');
+            const campaigns = data.campaigns?.filter(c => c.active) || [];
+
+            if (campaigns.length > 0) {
+                campaignDiv.innerHTML = campaigns.map(campaign => `
+                    <div class="campaign-card">
+                        ${campaign.badge ? `<div class="campaign-badge">${campaign.badge}</div>` : ''}
+                        <h3>${campaign.title}</h3>
+                        <p style="color: #666; margin: 10px 0;">${campaign.period}</p>
+                        <p>${campaign.description}</p>
+                        ${campaign.originalPrice ? `
+                            <div class="price-display">
+                                <span class="original-price">通常 ¥${campaign.originalPrice.toLocaleString()}</span>
+                                <span class="sale-price">¥${campaign.salePrice.toLocaleString()}</span>
+                                <span class="discount">${Math.round((1 - campaign.salePrice / campaign.originalPrice) * 100)}%OFF</span>
+                            </div>
+                        ` : ''}
+                        <div style="margin-top: 15px;">
+                            <span class="status success">アクティブ</span>
+                            ${campaign.featured ? '<span class="status warning">注目</span>' : ''}
+                        </div>
+                    </div>
+                `).join('');
+            } else {
+                campaignDiv.innerHTML = '<p style="color: #999;">アクティブなキャンペーンがありません</p>';
+            }
+
+            // お知らせ表示
+            const newsDiv = document.getElementById('news-display');
+            const news = data.news?.slice(0, 3) || [];
+
+            if (news.length > 0) {
+                newsDiv.innerHTML = news.map(item => `
+                    <div style="border-bottom: 1px solid #eee; padding: 15px 0;">
+                        <div style="color: #666; font-size: 0.9em;">${formatDate(item.publishedAt)}</div>
+                        <h4 style="margin: 5px 0;">${item.title}</h4>
+                        <p style="margin: 5px 0;">${item.content}</p>
+                        ${item.featured ? '<span class="status warning">注目</span>' : ''}
+                    </div>
+                `).join('');
+            } else {
+                newsDiv.innerHTML = '<p style="color: #999;">お知らせがありません</p>';
+            }
+
+            // スタッフ表示
+            const staffDiv = document.getElementById('staff-display');
+            const staff = data.staff?.slice(0, 2) || [];
+
+            if (staff.length > 0) {
+                staffDiv.innerHTML = staff.map(member => `
+                    <div style="border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 8px;">
+                        <h4 style="margin: 0 0 5px 0; color: #B8860B;">${member.name}</h4>
+                        <p style="margin: 5px 0; color: #666;">${member.role}</p>
+                        <p style="margin: 5px 0;">経験: ${member.experience}年 | 評価: ${member.rating}/5.0 ⭐</p>
+                        <p style="margin: 5px 0;">専門: ${member.specialties}</p>
+                    </div>
+                `).join('');
+            } else {
+                staffDiv.innerHTML = '<p style="color: #999;">スタッフ情報がありません</p>';
+            }
+        }
+
+        function formatDate(dateStr) {
+            try {
+                const date = new Date(dateStr);
+                return date.toLocaleDateString('ja-JP', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+            } catch (error) {
+                return dateStr;
+            }
+        }
+
+        // ページ読み込み時に自動でLocalStorageをチェック
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLocalStorage();
+        });
+    </script>
+</body>
+</html>

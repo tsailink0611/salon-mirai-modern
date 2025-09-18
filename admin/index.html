@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>サロン未来 - 管理画面</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        /* ログイン画面 */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #B8860B, #E8B4B8);
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-logo h1 {
+            color: #B8860B;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .login-logo p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #B8860B;
+        }
+
+        .btn {
+            background: #B8860B;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: #996f09;
+            transform: translateY(-2px);
+        }
+
+        /* メイン管理画面 */
+        .admin-container {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .admin-sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            background: #34495e;
+            text-align: center;
+        }
+
+        .sidebar-header h2 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .sidebar-header p {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .sidebar-menu li {
+            margin: 5px 0;
+        }
+
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .sidebar-menu a:hover,
+        .sidebar-menu a.active {
+            background: #B8860B;
+        }
+
+        .sidebar-menu i {
+            margin-right: 12px;
+            width: 20px;
+        }
+
+        .admin-main {
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .admin-header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-header h1 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+        }
+
+        .logout-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #B8860B;
+            padding-bottom: 10px;
+        }
+
+        /* データ表示 */
+        .data-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .data-card {
+            border: 2px solid #e1e5e9;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .data-card:hover {
+            border-color: #B8860B;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.85rem;
+            border-radius: 5px;
+        }
+
+        .btn-edit {
+            background: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-delete {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .price-display {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 10px 0;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #999;
+        }
+
+        .sale-price {
+            color: #e74c3c;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .discount {
+            background: #27ae60;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .status-active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* 編集フォーム */
+        .edit-form {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .edit-form.show {
+            display: flex;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            justify-content: flex-end;
+            margin-top: 30px;
+        }
+
+        .btn-cancel {
+            background: #6c757d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* ダッシュボード統計 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #B8860B, #E8B4B8);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- ログイン画面 -->
+    <div id="login-container" class="login-container">
+        <div class="login-box">
+            <div class="login-logo">
+                <h1>🏪 サロン未来</h1>
+                <p>管理画面へログイン</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">ユーザー名</label>
+                    <input type="text" id="username" class="form-control" value="salon_admin" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">パスワード</label>
+                    <input type="password" id="password" class="form-control" value="salon2024" required>
+                </div>
+                <button type="submit" class="btn">
+                    <i class="fas fa-sign-in-alt"></i> ログイン
+                </button>
+            </form>
+            <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 0.85rem; color: #666;">
+                <strong>デモ用アカウント:</strong><br>
+                ユーザー名: salon_admin<br>
+                パスワード: salon2024
+            </div>
+        </div>
+    </div>
+
+    <!-- メイン管理画面 -->
+    <div id="admin-container" class="admin-container">
+        <!-- サイドバー -->
+        <nav class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>🏪 サロン未来</h2>
+                <p>管理システム</p>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#" class="menu-item active" data-section="dashboard">
+                    <i class="fas fa-tachometer-alt"></i> ダッシュボード
+                </a></li>
+                <li><a href="#" class="menu-item" data-section="campaigns">
+                    <i class="fas fa-bullhorn"></i> キャンペーン管理
+                </a></li>
+                <li><a href="#" class="menu-item" data-section="news">
+                    <i class="fas fa-newspaper"></i> お知らせ管理
+                </a></li>
+                <li><a href="#" class="menu-item" data-section="staff">
+                    <i class="fas fa-users"></i> スタッフ管理
+                </a></li>
+                <li><a href="#" class="menu-item" data-section="services">
+                    <i class="fas fa-cut"></i> メニュー管理
+                </a></li>
+                <li><a href="#" class="menu-item" data-section="settings">
+                    <i class="fas fa-cog"></i> サイト設定
+                </a></li>
+            </ul>
+        </nav>
+
+        <!-- メインコンテンツ -->
+        <div class="admin-main">
+            <div class="admin-header">
+                <h1 id="pageTitle">ダッシュボード</h1>
+                <div>
+                    <button class="btn" onclick="exportDataAsFile()" style="margin-right: 10px; background: #3498db; padding: 8px 16px; font-size: 0.9rem;">
+                        <i class="fas fa-download"></i> バックアップ
+                    </button>
+                    <button class="logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> ログアウト
+                    </button>
+                </div>
+            </div>
+
+            <div id="successMessage" class="success-message">
+                <i class="fas fa-check-circle"></i> <span id="successText">更新が完了しました</span>
+            </div>
+
+            <!-- ダッシュボード -->
+            <div id="dashboard" class="content-section active">
+                <h2 class="section-title">サイト概要</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="campaignCount">0</div>
+                        <div class="stat-label">アクティブキャンペーン</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="newsCount">0</div>
+                        <div class="stat-label">お知らせ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="staffCount">0</div>
+                        <div class="stat-label">スタッフ</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="serviceCount">0</div>
+                        <div class="stat-label">メニュー</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 30px; margin-bottom: 15px;">最近の更新</h3>
+                <div class="data-card">
+                    <p><i class="fas fa-clock"></i> <strong>最終更新:</strong> <span id="lastUpdated">取得中...</span></p>
+                    <p style="margin-top: 10px;"><i class="fas fa-globe"></i> <strong>サイトURL:</strong>
+                        <a href="../index.html" target="_blank" style="color: #B8860B;">サロン未来サイトを確認</a>
+                    </p>
+                </div>
+            </div>
+
+            <!-- キャンペーン管理 -->
+            <div id="campaigns" class="content-section">
+                <h2 class="section-title">キャンペーン管理</h2>
+                <div style="margin-bottom: 20px;">
+                    <button class="btn" onclick="addCampaign()" id="addCampaignBtn">
+                        <i class="fas fa-plus"></i> 新しいキャンペーンを追加
+                    </button>
+                </div>
+                <div id="campaignList" class="data-grid"></div>
+            </div>
+
+            <!-- お知らせ管理 -->
+            <div id="news" class="content-section">
+                <h2 class="section-title">お知らせ管理</h2>
+                <button class="btn" onclick="addNews()">
+                    <i class="fas fa-plus"></i> 新しいお知らせを追加
+                </button>
+                <div id="newsList" class="data-grid"></div>
+            </div>
+
+            <!-- スタッフ管理 -->
+            <div id="staff" class="content-section">
+                <h2 class="section-title">スタッフ管理</h2>
+                <button class="btn" onclick="addStaff()">
+                    <i class="fas fa-plus"></i> 新しいスタッフを追加
+                </button>
+                <div id="staffList" class="data-grid"></div>
+            </div>
+
+            <!-- メニュー管理 -->
+            <div id="services" class="content-section">
+                <h2 class="section-title">メニュー管理</h2>
+                <button class="btn" onclick="addService()">
+                    <i class="fas fa-plus"></i> 新しいメニューを追加
+                </button>
+                <div id="servicesList" class="data-grid"></div>
+            </div>
+
+            <!-- サイト設定 -->
+            <div id="settings" class="content-section">
+                <h2 class="section-title">サイト設定</h2>
+                <div class="data-card">
+                    <div class="form-row">
+                        <div>
+                            <label>サイト名</label>
+                            <input type="text" id="siteName" class="form-control" value="サロン未来">
+                        </div>
+                        <div>
+                            <label>メインカラー</label>
+                            <input type="color" id="primaryColor" class="form-control" value="#B8860B">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div>
+                            <label>電話番号</label>
+                            <input type="text" id="phone" class="form-control" value="03-5678-9012">
+                        </div>
+                        <div>
+                            <label>メールアドレス</label>
+                            <input type="email" id="email" class="form-control" value="info@salon-mirai.com">
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div>
+                            <label>住所</label>
+                            <input type="text" id="address" class="form-control" value="〒123-4567 東京都未来区美容町1-2-3">
+                        </div>
+                    </div>
+                    <div class="form-row full">
+                        <div>
+                            <label>営業時間</label>
+                            <input type="text" id="hours" class="form-control" value="10:00〜20:00（月曜定休）">
+                        </div>
+                    </div>
+                    <div style="margin-top: 30px;">
+                        <button class="btn" onclick="saveSettings()">
+                            <i class="fas fa-save"></i> 設定を保存
+                        </button>
+                        <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importDataFromFile(event)">
+                        <button class="btn" onclick="document.getElementById('importFile').click()" style="margin-left: 10px; background: #27ae60;">
+                            <i class="fas fa-upload"></i> データ復元
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 編集フォーム（動的に生成） -->
+    <div id="editForm" class="edit-form">
+        <div class="form-container">
+            <h3 id="formTitle">編集</h3>
+            <div id="formContent"></div>
+            <div class="form-actions">
+                <button class="btn-cancel" onclick="closeEditForm()">キャンセル</button>
+                <button class="btn-save" onclick="saveItem()">保存</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seed Data -->
+    <script id="seed-data" type="application/json">
+{"campaigns":[{"id":1,"title":"秋冬限定カラーキャンペーン","period":"2024年9月1日〜11月30日","description":"季節感あふれるトレンドカラーを特別価格でご提供。パーソナルカラー診断付きで、あなたに最適な色合いを見つけましょう。","originalPrice":8500,"salePrice":6800,"badge":"🔥人気","featured":true,"active":true,"tags":"カラー,パーソナル診断,期間限定","image":"images_top/image_fx (5).jpg"},{"id":2,"title":"初回限定トライアルセット","period":"新規のお客様限定","description":"初回ご来店のお客様に特別価格でカット+シャンプー+ブローのセットをご提供。お気軽にサロン未来の技術をお試しください。","originalPrice":5500,"salePrice":3980,"badge":"✨新規","featured":false,"active":true,"tags":"カット,初回限定,お試し","image":"images_about/image_coordinate.jpg"},{"id":3,"title":"プレミアムヘッドスパ体験","period":"2024年9月15日〜10月15日","description":"疲れた頭皮と心を癒すプレミアムヘッドスパコース。アロマオイルを使用した極上のリラクゼーション体験をお楽しみください。","originalPrice":4500,"salePrice":3200,"badge":"","featured":false,"active":true,"tags":"ヘッドスパ,リラクゼーション,アロマ","image":"images_about/Image_kodawarinoie.jpg"}],"news":[{"id":1,"title":"年末年始の営業について","content":"12月31日〜1月3日まで休業させていただきます。新年は1月4日より通常営業いたします。","publishedAt":"2024-09-17T09:00:00.000Z","featured":true},{"id":2,"title":"新スタイリスト鈴木健太が加入しました","content":"10年の経験を持つスタイリスト鈴木健太がサロン未来に加入いたします。メンズカットとトレンドスタイルが得意です。","publishedAt":"2024-09-15T10:30:00.000Z","featured":false},{"id":3,"title":"秋冬トレンドカラーのご提案","content":"今年の秋冬トレンドカラーをご紹介します。深みのあるブラウン系やアッシュ系が人気です。","publishedAt":"2024-09-10T14:00:00.000Z","featured":false}],"staff":[{"id":1,"name":"田中美穂","role":"代表スタイリスト / サロンオーナー","experience":"15","bio":"15年の経験を持つベテランスタイリスト。お客様一人ひとりの魅力を最大限に引き出すスタイル提案を得意としています。","specialties":"カット,カラー,パーマ","rating":4.9,"photo":"images_about/Image_daihyou.jpg","reviews":["いつも丁寧にカウンセリングしてくれます。仕上がりも最高！","技術力が高く、トレンドを取り入れたスタイルが素敵です。"]},{"id":2,"name":"佐藤雅人","role":"シニアスタイリスト","experience":"12","bio":"トレンドを取り入れたモダンなスタイルから、クラシックなデザインまで幅広く対応。メンズカットも得意分野です。","specialties":"メンズカット,トレンドスタイル,ヘッドスパ","rating":4.8,"photo":"images_about/Image_sekkeishi.jpg","reviews":["メンズカットが本当に上手！清潔感のある仕上がりです。","ヘッドスパが気持ちよくて、毎回リラックスできます。"]},{"id":3,"name":"山田愛","role":"スタイリスト","experience":"8","bio":"ナチュラルで上品なスタイルを得意とし、特にボブスタイルとカラーリングに定評があります。丁寧なカウンセリングが人気です。","specialties":"ボブスタイル,ナチュラルカラー,トリートメント","rating":4.7,"photo":"images_about/image_coordinate.jpg","reviews":["ボブスタイルが本当に似合うようにカットしてくれます。","カラーの提案が上手で、いつも満足しています。"]},{"id":4,"name":"鈴木健太","role":"スタイリスト","experience":"10","bio":"モダンで洗練されたスタイルが得意。特にレイヤーカットとメンズスタイルに定評があります。お客様との コミュニケーションを大切にしています。","specialties":"レイヤーカット,メンズスタイル,ハイライト","rating":4.6,"photo":"images_about/Image_daihyou.jpg","reviews":["新人とは思えない技術力！とても満足しています。","話しやすくて、要望をしっかり聞いてくれます。"]}],"services":[{"id":1,"category":"カット・スタイリング","name":"レディースカット","price":4500,"priceNote":"～","description":"シャンプー・ブロー込み。丁寧なカウンセリングでお客様に最適なスタイルをご提案いたします。","features":"骨格診断に基づくカット\nライフスタイルカウンセリング\nスタイリングアドバイス"},{"id":2,"category":"カット・スタイリング","name":"メンズカット","price":3800,"priceNote":"～","description":"ビジネスからカジュアルまで、シーンに合わせたメンズスタイルをご提案。清潔感のある仕上がりが人気です。","features":"ビジネススタイル対応\n眉毛カット込み\nスタイリング指導"},{"id":3,"category":"カラー","name":"フルカラー","price":8000,"priceNote":"～","description":"全体カラー。豊富な色展開で、お客様だけの特別な色合いを実現します。","features":"オーガニックカラー使用\n肌色診断\n色持ちアドバイス"},{"id":4,"category":"パーマ・ストレート","name":"デジタルパーマ","price":12500,"priceNote":"～","description":"自然で美しいカールが長持ち。お手入れが簡単で、毎朝のスタイリングが楽になります。","features":"長時間持続\n自然な仕上がり\nスタイリング簡単"},{"id":5,"category":"ヘッドスパ・トリートメント","name":"プレミアムヘッドスパ","price":5500,"priceNote":"～","description":"頭皮のクレンジングからマッサージまで、至福のリラクゼーション体験をお楽しみください。","features":"オーガニックオイル使用\n頭皮診断\nリラクゼーション効果\n血行促進"}],"settings":{"siteName":"サロン未来","primaryColor":"#B8860B","secondaryColor":"#F7F4F0","accentColor":"#E8B4B8","contact":{"phone":"03-5678-9012","email":"info@salon-mirai.com","address":"〒123-4567 東京都未来区美容町1-2-3","hours":"10:00〜20:00（月曜定休）"},"lastUpdated":"2024-09-17T15:30:00.000Z"}}
+    </script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <!-- Firebase統合スクリプト -->
+    <script src="../js/firebase-integration.js"></script>
+
+    <script src="admin.js"></script>
+</body>
+</html>

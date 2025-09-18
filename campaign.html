@@ -80,7 +80,13 @@
         <section id="current-campaigns" class="content-section">
             <div class="container">
                 <h2 class="section-title animate-on-scroll fade-in">現在開催中のキャンペーン</h2>
-                <div class="campaign-grid animate-on-scroll fade-in-up">
+                <!-- 動的コンテンツエリア（Strapi連携） -->
+                <div id="dynamic-campaigns" class="campaign-grid animate-on-scroll fade-in-up">
+                    <!-- Strapiから自動取得したキャンペーンがここに表示 -->
+                </div>
+
+                <!-- 静的コンテンツ（フォールバック用） -->
+                <div id="static-campaigns" class="campaign-grid animate-on-scroll fade-in-up" style="display: none;">
 
                     <div class="campaign-card featured">
                         <div class="campaign-badge">🔥人気</div>
@@ -394,6 +400,13 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/admin-integration-complete.js"></script>
+    <script src="js/navigation-fix.js"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="js/firebase-integration.js"></script>
+    <script src="js/strapi-integration.js"></script>
     <script>
         // タブ切り替え機能
         document.addEventListener('DOMContentLoaded', function() {
